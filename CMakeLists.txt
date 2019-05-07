@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.7)
 
 project(audioPi)
 
@@ -13,23 +13,18 @@ if ( NOT (GST_FOUND))
 endif()
 set(ENV{PKG_CONFIG_PATH})
 
-pkg_check_modules(GSTRTSP
-    gstreamer-rtsp-server-1.0)
-
 include_directories("${GST_INCLUDE_DIRS}")
-include_directories(${GSTRTSP_INCLUDE_DIRS})
 link_libraries(${GST_LIBRARIES})
 
 
 set (SERVER
 	server/server-main.cpp
         server/server-local.cpp
-        server/server-rtsp.cpp
+        server/server-udp.cpp
         media/media.cpp
 	)
 add_executable(${PROJECT_NAME}-server ${SERVER})
 target_link_libraries(${PROJECT_NAME}-server ${GST_LIBRARIES})
-target_link_libraries(${PROJECT_NAME}-server ${GSTRTSP_LIBRARIES})
 
 set (CLIENT
         client/client-main.cpp
@@ -39,6 +34,5 @@ set (CLIENT
 include_directories(media)
 add_executable(${PROJECT_NAME}-client ${CLIENT})
 target_link_libraries(${PROJECT_NAME}-client ${GST_LIBRARIES})
-target_link_libraries(${PROJECT_NAME}-client ${GSTRTSP_LIBRARIES})
 
 

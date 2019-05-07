@@ -1,8 +1,10 @@
 #pragma once
 
 #include<gst/gst.h>
+#include <cstdlib> // for exit function on raspberry
 
 enum class MediaStatus {PLAY, PAUSE, STOP};
+
 class Media
 {
 

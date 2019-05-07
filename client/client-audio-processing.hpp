@@ -1,6 +1,7 @@
 #pragma once
 
 #include <gst/gst.h>
+#include <cstdlib> // for exit function on raspberry
 
 #include "../media/media.hpp"
 
