@@ -37,11 +37,8 @@ void Reciver_mp3::set_reciver_mp3(gchar* host, gint port)
 
     GstCaps* caps;
     caps = gst_caps_new_simple("application/x-rtp", NULL);
-    //gboolean link = gst_element_link_filtered(source, depay, caps);
-    //if (!link) g_warning("Failed to link element with caps! ");
     g_object_set(G_OBJECT(source), "caps", caps, NULL);
     gst_caps_unref(caps);
 
     g_object_set(G_OBJECT(source), "address", host, "port", port, NULL);
-    g_print("HERE");
 }
