@@ -6,14 +6,9 @@ Server::Server()
 Server::~Server()
 {}
 
-void Server::set_status(std::string status)
+void Server::set_status(MediaStatus status)
 {
-    if (status == "PLAY")
-        Media::set_status(MediaStatus::PLAY);
-    if (status == "PAUSE")
-        Media::set_status(MediaStatus::PAUSE);
-    if (status == "STOP")
-        Media::set_status(MediaStatus::STOP);
+    Media::set_status(status);
 }
 
 void Server::set_server(gchar* host, gint port)

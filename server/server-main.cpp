@@ -10,11 +10,11 @@ int main (  int   argc,
 //    Local local;
 //    local.set_pipeline_for_mp3();
 //    local.set_location("../PigeonJohn-TheBomb.mp3");
-//    local.set_status("PLAY");
+//    local.set_status(MediaStatus::PLAY);
 
     Server server;
     server.set_server("192.168.1.7", 5000);
     server.set_location("../PigeonJohn-TheBomb.mp3");
-    server.set_status("PLAY");
+    server.set_status(MediaStatus::PLAY);
 
 }
