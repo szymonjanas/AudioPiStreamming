@@ -2,6 +2,7 @@
 
 #include<gst/gst.h>
 #include "../media/media.hpp"
+#include <string>
 
 class Local : private Media
 {
@@ -11,6 +12,6 @@ public:
     Local();
     ~Local();
     void set_location(const char* location);
-    void set_status(MediaStatus status);
+    void set_status(std::string status);
 };
 

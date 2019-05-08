@@ -43,7 +43,12 @@ void Local::set_location(const char *location)
     g_print ("File location: %s\n", location);
 }
 
-void Local::set_status(MediaStatus status)
+void Local::set_status(std::string status)
 {
-    Media::set_status(status);
+    if (status == "PLAY")
+        Media::set_status(MediaStatus::PLAY);
+    if (status == "PAUSE")
+        Media::set_status(MediaStatus::PAUSE);
+    if (status == "STOP")
+        Media::set_status(MediaStatus::STOP);
 }

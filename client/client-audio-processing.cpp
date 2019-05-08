@@ -1,8 +1,13 @@
 #include"client-audio-processing.hpp"
 
-void Reciver_mp3::set_status(MediaStatus status)
+void Reciver_mp3::set_status(std::string status)
 {
-    Media::set_status(status);
+    if (status == "PLAY")
+        Media::set_status(MediaStatus::PLAY);
+    if (status == "PAUSE")
+        Media::set_status(MediaStatus::PAUSE);
+    if (status == "STOP")
+        Media::set_status(MediaStatus::STOP);
 }
 
 void Reciver_mp3::set_reciver_mp3(gchar* host, gint port)

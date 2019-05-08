@@ -13,14 +13,18 @@ if ( NOT (GST_FOUND))
 endif()
 set(ENV{PKG_CONFIG_PATH})
 
+find_package(Boost 1.67)
+
 include_directories("${GST_INCLUDE_DIRS}")
 link_libraries(${GST_LIBRARIES})
+include_directories( ${Boost_INCLUDE_DIRS} )
 
 
 set (SERVER
 	server/server-main.cpp
         server/server-local.cpp
         server/server-udp.cpp
+        server/server-controler.cpp
         media/media.cpp
 	)
 add_executable(${PROJECT_NAME}-server ${SERVER})
