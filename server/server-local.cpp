@@ -1,5 +1,4 @@
 #include"server-local.hpp"
-#include<gst/rtsp-server/rtsp-server.h>
 
 Local::Local()
 {
