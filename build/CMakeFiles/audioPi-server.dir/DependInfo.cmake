@@ -5,9 +5,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/szymon/CppProjects/AudioPiStreamming/media/media.cpp" "/home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles/audioPi-server.dir/media/media.cpp.o"
+  "/home/szymon/CppProjects/AudioPiStreamming/server/server-controler.cpp" "/home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles/audioPi-server.dir/server/server-controler.cpp.o"
   "/home/szymon/CppProjects/AudioPiStreamming/server/server-local.cpp" "/home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles/audioPi-server.dir/server/server-local.cpp.o"
   "/home/szymon/CppProjects/AudioPiStreamming/server/server-main.cpp" "/home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles/audioPi-server.dir/server/server-main.cpp.o"
-  "/home/szymon/CppProjects/AudioPiStreamming/server/server-rtsp.cpp" "/home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles/audioPi-server.dir/server/server-rtsp.cpp.o"
+  "/home/szymon/CppProjects/AudioPiStreamming/server/server-udp.cpp" "/home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles/audioPi-server.dir/server/server-udp.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

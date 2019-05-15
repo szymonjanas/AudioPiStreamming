@@ -83,22 +83,35 @@ CMakeFiles/audioPi-server.dir/server/server-local.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/audioPi-server.dir/server/server-local.cpp.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/szymon/CppProjects/AudioPiStreamming/server/server-local.cpp -o CMakeFiles/audioPi-server.dir/server/server-local.cpp.s
 
-CMakeFiles/audioPi-server.dir/server/server-rtsp.cpp.o: CMakeFiles/audioPi-server.dir/flags.make
-CMakeFiles/audioPi-server.dir/server/server-rtsp.cpp.o: ../server/server-rtsp.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/audioPi-server.dir/server/server-rtsp.cpp.o"
-	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/audioPi-server.dir/server/server-rtsp.cpp.o -c /home/szymon/CppProjects/AudioPiStreamming/server/server-rtsp.cpp
+CMakeFiles/audioPi-server.dir/server/server-udp.cpp.o: CMakeFiles/audioPi-server.dir/flags.make
+CMakeFiles/audioPi-server.dir/server/server-udp.cpp.o: ../server/server-udp.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/audioPi-server.dir/server/server-udp.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/audioPi-server.dir/server/server-udp.cpp.o -c /home/szymon/CppProjects/AudioPiStreamming/server/server-udp.cpp
 
-CMakeFiles/audioPi-server.dir/server/server-rtsp.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/audioPi-server.dir/server/server-rtsp.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/szymon/CppProjects/AudioPiStreamming/server/server-rtsp.cpp > CMakeFiles/audioPi-server.dir/server/server-rtsp.cpp.i
+CMakeFiles/audioPi-server.dir/server/server-udp.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/audioPi-server.dir/server/server-udp.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/szymon/CppProjects/AudioPiStreamming/server/server-udp.cpp > CMakeFiles/audioPi-server.dir/server/server-udp.cpp.i
 
-CMakeFiles/audioPi-server.dir/server/server-rtsp.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/audioPi-server.dir/server/server-rtsp.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/szymon/CppProjects/AudioPiStreamming/server/server-rtsp.cpp -o CMakeFiles/audioPi-server.dir/server/server-rtsp.cpp.s
+CMakeFiles/audioPi-server.dir/server/server-udp.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/audioPi-server.dir/server/server-udp.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/szymon/CppProjects/AudioPiStreamming/server/server-udp.cpp -o CMakeFiles/audioPi-server.dir/server/server-udp.cpp.s
+
+CMakeFiles/audioPi-server.dir/server/server-controler.cpp.o: CMakeFiles/audioPi-server.dir/flags.make
+CMakeFiles/audioPi-server.dir/server/server-controler.cpp.o: ../server/server-controler.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/audioPi-server.dir/server/server-controler.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/audioPi-server.dir/server/server-controler.cpp.o -c /home/szymon/CppProjects/AudioPiStreamming/server/server-controler.cpp
+
+CMakeFiles/audioPi-server.dir/server/server-controler.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/audioPi-server.dir/server/server-controler.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/szymon/CppProjects/AudioPiStreamming/server/server-controler.cpp > CMakeFiles/audioPi-server.dir/server/server-controler.cpp.i
+
+CMakeFiles/audioPi-server.dir/server/server-controler.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/audioPi-server.dir/server/server-controler.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/szymon/CppProjects/AudioPiStreamming/server/server-controler.cpp -o CMakeFiles/audioPi-server.dir/server/server-controler.cpp.s
 
 CMakeFiles/audioPi-server.dir/media/media.cpp.o: CMakeFiles/audioPi-server.dir/flags.make
 CMakeFiles/audioPi-server.dir/media/media.cpp.o: ../media/media.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/audioPi-server.dir/media/media.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/audioPi-server.dir/media/media.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/audioPi-server.dir/media/media.cpp.o -c /home/szymon/CppProjects/AudioPiStreamming/media/media.cpp
 
 CMakeFiles/audioPi-server.dir/media/media.cpp.i: cmake_force
@@ -113,7 +126,8 @@ CMakeFiles/audioPi-server.dir/media/media.cpp.s: cmake_force
 audioPi__server_OBJECTS = \
 "CMakeFiles/audioPi-server.dir/server/server-main.cpp.o" \
 "CMakeFiles/audioPi-server.dir/server/server-local.cpp.o" \
-"CMakeFiles/audioPi-server.dir/server/server-rtsp.cpp.o" \
+"CMakeFiles/audioPi-server.dir/server/server-udp.cpp.o" \
+"CMakeFiles/audioPi-server.dir/server/server-controler.cpp.o" \
 "CMakeFiles/audioPi-server.dir/media/media.cpp.o"
 
 # External object files for target audioPi-server
@@ -121,11 +135,12 @@ audioPi__server_EXTERNAL_OBJECTS =
 
 audioPi-server: CMakeFiles/audioPi-server.dir/server/server-main.cpp.o
 audioPi-server: CMakeFiles/audioPi-server.dir/server/server-local.cpp.o
-audioPi-server: CMakeFiles/audioPi-server.dir/server/server-rtsp.cpp.o
+audioPi-server: CMakeFiles/audioPi-server.dir/server/server-udp.cpp.o
+audioPi-server: CMakeFiles/audioPi-server.dir/server/server-controler.cpp.o
 audioPi-server: CMakeFiles/audioPi-server.dir/media/media.cpp.o
 audioPi-server: CMakeFiles/audioPi-server.dir/build.make
 audioPi-server: CMakeFiles/audioPi-server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable audioPi-server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable audioPi-server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/audioPi-server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

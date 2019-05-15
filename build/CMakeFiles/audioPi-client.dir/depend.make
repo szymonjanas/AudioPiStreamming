@@ -181,7 +181,11 @@ CMakeFiles/audioPi-client.dir/client/client-audio-processing.cpp.o: /usr/include
 CMakeFiles/audioPi-client.dir/client/client-audio-processing.cpp.o: /usr/include/gstreamer-1.0/gst/gstversion.h
 CMakeFiles/audioPi-client.dir/client/client-audio-processing.cpp.o: /usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h
 
+CMakeFiles/audioPi-client.dir/client/client-controler.cpp.o: ../client/client-controler.cpp
+CMakeFiles/audioPi-client.dir/client/client-controler.cpp.o: ../client/client-controler.hpp
+
 CMakeFiles/audioPi-client.dir/client/client-main.cpp.o: ../client/client-audio-processing.hpp
+CMakeFiles/audioPi-client.dir/client/client-main.cpp.o: ../client/client-controler.hpp
 CMakeFiles/audioPi-client.dir/client/client-main.cpp.o: ../client/client-main.cpp
 CMakeFiles/audioPi-client.dir/client/client-main.cpp.o: ../media/media.hpp
 CMakeFiles/audioPi-client.dir/client/client-main.cpp.o: /usr/include/glib-2.0/glib-object.h

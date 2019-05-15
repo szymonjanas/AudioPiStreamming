@@ -6,18 +6,36 @@
 
 #IncludeRegexTransform: 
 
-/home/szymon/CppProjects/AudioPiStreamming/client/client-audio-processing.cpp
-client-audio-processing.hpp
-/home/szymon/CppProjects/AudioPiStreamming/client/client-audio-processing.hpp
-
 /home/szymon/CppProjects/AudioPiStreamming/client/client-audio-processing.hpp
 gst/gst.h
+-
+cstdlib
 -
 ../media/media.hpp
 /home/szymon/CppProjects/AudioPiStreamming/media/media.hpp
 
+/home/szymon/CppProjects/AudioPiStreamming/client/client-controler.hpp
+zmq.hpp
+-
+string
+-
+
+/home/szymon/CppProjects/AudioPiStreamming/client/client-main.cpp
+gst/gst.h
+-
+client-audio-processing.hpp
+/home/szymon/CppProjects/AudioPiStreamming/client/client-audio-processing.hpp
+client-controler.hpp
+/home/szymon/CppProjects/AudioPiStreamming/client/client-controler.hpp
+sstream
+-
+iostream
+-
+
 /home/szymon/CppProjects/AudioPiStreamming/media/media.hpp
 gst/gst.h
+-
+cstdlib
 -
 
 /usr/include/glib-2.0/glib-object.h

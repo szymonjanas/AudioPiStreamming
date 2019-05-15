@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/szymon/CppProjects/AudioPiStreamming/client/client-audio-processing.cpp" "/home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles/audioPi-client.dir/client/client-audio-processing.cpp.o"
+  "/home/szymon/CppProjects/AudioPiStreamming/client/client-controler.cpp" "/home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles/audioPi-client.dir/client/client-controler.cpp.o"
   "/home/szymon/CppProjects/AudioPiStreamming/client/client-main.cpp" "/home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles/audioPi-client.dir/client/client-main.cpp.o"
   "/home/szymon/CppProjects/AudioPiStreamming/media/media.cpp" "/home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles/audioPi-client.dir/media/media.cpp.o"
   )

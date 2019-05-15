@@ -152,6 +152,12 @@
 		<Unit filename="/home/szymon/CppProjects/AudioPiStreamming/client/client-audio-processing.hpp">
 			<Option target="audioPi-client"/>
 		</Unit>
+		<Unit filename="/home/szymon/CppProjects/AudioPiStreamming/client/client-controler.cpp">
+			<Option target="audioPi-client"/>
+		</Unit>
+		<Unit filename="/home/szymon/CppProjects/AudioPiStreamming/client/client-controler.hpp">
+			<Option target="audioPi-client"/>
+		</Unit>
 		<Unit filename="/home/szymon/CppProjects/AudioPiStreamming/client/client-main.cpp">
 			<Option target="audioPi-client"/>
 		</Unit>
@@ -163,6 +169,12 @@
 			<Option target="audioPi-server"/>
 			<Option target="audioPi-client"/>
 		</Unit>
+		<Unit filename="/home/szymon/CppProjects/AudioPiStreamming/server/server-controler.cpp">
+			<Option target="audioPi-server"/>
+		</Unit>
+		<Unit filename="/home/szymon/CppProjects/AudioPiStreamming/server/server-controler.hpp">
+			<Option target="audioPi-server"/>
+		</Unit>
 		<Unit filename="/home/szymon/CppProjects/AudioPiStreamming/server/server-local.cpp">
 			<Option target="audioPi-server"/>
 		</Unit>
@@ -172,10 +184,10 @@
 		<Unit filename="/home/szymon/CppProjects/AudioPiStreamming/server/server-main.cpp">
 			<Option target="audioPi-server"/>
 		</Unit>
-		<Unit filename="/home/szymon/CppProjects/AudioPiStreamming/server/server-rtsp.cpp">
+		<Unit filename="/home/szymon/CppProjects/AudioPiStreamming/server/server-udp.cpp">
 			<Option target="audioPi-server"/>
 		</Unit>
-		<Unit filename="/home/szymon/CppProjects/AudioPiStreamming/server/server-rtsp.hpp">
+		<Unit filename="/home/szymon/CppProjects/AudioPiStreamming/server/server-udp.hpp">
 			<Option target="audioPi-server"/>
 		</Unit>
 		<Unit filename="/home/szymon/CppProjects/AudioPiStreamming/CMakeLists.txt">

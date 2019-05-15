@@ -71,7 +71,7 @@ CMAKE_BINARY_DIR = /home/szymon/CppProjects/AudioPiStreamming/build
 CMakeFiles/audioPi-server.dir/all:
 	$(MAKE) -f CMakeFiles/audioPi-server.dir/build.make CMakeFiles/audioPi-server.dir/depend
 	$(MAKE) -f CMakeFiles/audioPi-server.dir/build.make CMakeFiles/audioPi-server.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles --progress-num=5,6,7,8,9 "Built target audioPi-server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles --progress-num=6,7,8,9,10,11 "Built target audioPi-server"
 .PHONY : CMakeFiles/audioPi-server.dir/all
 
 # Include target in all.
@@ -81,7 +81,7 @@ all: CMakeFiles/audioPi-server.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/audioPi-server.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/audioPi-server.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles 0
 .PHONY : CMakeFiles/audioPi-server.dir/rule
@@ -108,7 +108,7 @@ clean: CMakeFiles/audioPi-server.dir/clean
 CMakeFiles/audioPi-client.dir/all:
 	$(MAKE) -f CMakeFiles/audioPi-client.dir/build.make CMakeFiles/audioPi-client.dir/depend
 	$(MAKE) -f CMakeFiles/audioPi-client.dir/build.make CMakeFiles/audioPi-client.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles --progress-num=1,2,3,4 "Built target audioPi-client"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles --progress-num=1,2,3,4,5 "Built target audioPi-client"
 .PHONY : CMakeFiles/audioPi-client.dir/all
 
 # Include target in all.
@@ -118,7 +118,7 @@ all: CMakeFiles/audioPi-client.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/audioPi-client.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles 5
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/audioPi-client.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles 0
 .PHONY : CMakeFiles/audioPi-client.dir/rule

@@ -181,8 +181,12 @@ CMakeFiles/audioPi-client.dir/client/client-audio-processing.cpp.o
  /usr/include/gstreamer-1.0/gst/gstvalue.h
  /usr/include/gstreamer-1.0/gst/gstversion.h
  /usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h
+CMakeFiles/audioPi-client.dir/client/client-controler.cpp.o
+ /home/szymon/CppProjects/AudioPiStreamming/client/client-controler.cpp
+ /home/szymon/CppProjects/AudioPiStreamming/client/client-controler.hpp
 CMakeFiles/audioPi-client.dir/client/client-main.cpp.o
  /home/szymon/CppProjects/AudioPiStreamming/client/client-audio-processing.hpp
+ /home/szymon/CppProjects/AudioPiStreamming/client/client-controler.hpp
  /home/szymon/CppProjects/AudioPiStreamming/client/client-main.cpp
  /home/szymon/CppProjects/AudioPiStreamming/media/media.hpp
  /usr/include/glib-2.0/glib-object.h

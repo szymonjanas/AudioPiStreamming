@@ -163,6 +163,33 @@ client/client-audio-processing.cpp.s:
 	$(MAKE) -f CMakeFiles/audioPi-client.dir/build.make CMakeFiles/audioPi-client.dir/client/client-audio-processing.cpp.s
 .PHONY : client/client-audio-processing.cpp.s
 
+client/client-controler.o: client/client-controler.cpp.o
+
+.PHONY : client/client-controler.o
+
+# target to build an object file
+client/client-controler.cpp.o:
+	$(MAKE) -f CMakeFiles/audioPi-client.dir/build.make CMakeFiles/audioPi-client.dir/client/client-controler.cpp.o
+.PHONY : client/client-controler.cpp.o
+
+client/client-controler.i: client/client-controler.cpp.i
+
+.PHONY : client/client-controler.i
+
+# target to preprocess a source file
+client/client-controler.cpp.i:
+	$(MAKE) -f CMakeFiles/audioPi-client.dir/build.make CMakeFiles/audioPi-client.dir/client/client-controler.cpp.i
+.PHONY : client/client-controler.cpp.i
+
+client/client-controler.s: client/client-controler.cpp.s
+
+.PHONY : client/client-controler.s
+
+# target to generate assembly for a file
+client/client-controler.cpp.s:
+	$(MAKE) -f CMakeFiles/audioPi-client.dir/build.make CMakeFiles/audioPi-client.dir/client/client-controler.cpp.s
+.PHONY : client/client-controler.cpp.s
+
 client/client-main.o: client/client-main.cpp.o
 
 .PHONY : client/client-main.o
@@ -220,6 +247,33 @@ media/media.cpp.s:
 	$(MAKE) -f CMakeFiles/audioPi-client.dir/build.make CMakeFiles/audioPi-client.dir/media/media.cpp.s
 .PHONY : media/media.cpp.s
 
+server/server-controler.o: server/server-controler.cpp.o
+
+.PHONY : server/server-controler.o
+
+# target to build an object file
+server/server-controler.cpp.o:
+	$(MAKE) -f CMakeFiles/audioPi-server.dir/build.make CMakeFiles/audioPi-server.dir/server/server-controler.cpp.o
+.PHONY : server/server-controler.cpp.o
+
+server/server-controler.i: server/server-controler.cpp.i
+
+.PHONY : server/server-controler.i
+
+# target to preprocess a source file
+server/server-controler.cpp.i:
+	$(MAKE) -f CMakeFiles/audioPi-server.dir/build.make CMakeFiles/audioPi-server.dir/server/server-controler.cpp.i
+.PHONY : server/server-controler.cpp.i
+
+server/server-controler.s: server/server-controler.cpp.s
+
+.PHONY : server/server-controler.s
+
+# target to generate assembly for a file
+server/server-controler.cpp.s:
+	$(MAKE) -f CMakeFiles/audioPi-server.dir/build.make CMakeFiles/audioPi-server.dir/server/server-controler.cpp.s
+.PHONY : server/server-controler.cpp.s
+
 server/server-local.o: server/server-local.cpp.o
 
 .PHONY : server/server-local.o
@@ -274,32 +328,32 @@ server/server-main.cpp.s:
 	$(MAKE) -f CMakeFiles/audioPi-server.dir/build.make CMakeFiles/audioPi-server.dir/server/server-main.cpp.s
 .PHONY : server/server-main.cpp.s
 
-server/server-rtsp.o: server/server-rtsp.cpp.o
+server/server-udp.o: server/server-udp.cpp.o
 
-.PHONY : server/server-rtsp.o
+.PHONY : server/server-udp.o
 
 # target to build an object file
-server/server-rtsp.cpp.o:
-	$(MAKE) -f CMakeFiles/audioPi-server.dir/build.make CMakeFiles/audioPi-server.dir/server/server-rtsp.cpp.o
-.PHONY : server/server-rtsp.cpp.o
+server/server-udp.cpp.o:
+	$(MAKE) -f CMakeFiles/audioPi-server.dir/build.make CMakeFiles/audioPi-server.dir/server/server-udp.cpp.o
+.PHONY : server/server-udp.cpp.o
 
-server/server-rtsp.i: server/server-rtsp.cpp.i
+server/server-udp.i: server/server-udp.cpp.i
 
-.PHONY : server/server-rtsp.i
+.PHONY : server/server-udp.i
 
 # target to preprocess a source file
-server/server-rtsp.cpp.i:
-	$(MAKE) -f CMakeFiles/audioPi-server.dir/build.make CMakeFiles/audioPi-server.dir/server/server-rtsp.cpp.i
-.PHONY : server/server-rtsp.cpp.i
+server/server-udp.cpp.i:
+	$(MAKE) -f CMakeFiles/audioPi-server.dir/build.make CMakeFiles/audioPi-server.dir/server/server-udp.cpp.i
+.PHONY : server/server-udp.cpp.i
 
-server/server-rtsp.s: server/server-rtsp.cpp.s
+server/server-udp.s: server/server-udp.cpp.s
 
-.PHONY : server/server-rtsp.s
+.PHONY : server/server-udp.s
 
 # target to generate assembly for a file
-server/server-rtsp.cpp.s:
-	$(MAKE) -f CMakeFiles/audioPi-server.dir/build.make CMakeFiles/audioPi-server.dir/server/server-rtsp.cpp.s
-.PHONY : server/server-rtsp.cpp.s
+server/server-udp.cpp.s:
+	$(MAKE) -f CMakeFiles/audioPi-server.dir/build.make CMakeFiles/audioPi-server.dir/server/server-udp.cpp.s
+.PHONY : server/server-udp.cpp.s
 
 # Help Target
 help:
@@ -314,21 +368,27 @@ help:
 	@echo "... client/client-audio-processing.o"
 	@echo "... client/client-audio-processing.i"
 	@echo "... client/client-audio-processing.s"
+	@echo "... client/client-controler.o"
+	@echo "... client/client-controler.i"
+	@echo "... client/client-controler.s"
 	@echo "... client/client-main.o"
 	@echo "... client/client-main.i"
 	@echo "... client/client-main.s"
 	@echo "... media/media.o"
 	@echo "... media/media.i"
 	@echo "... media/media.s"
+	@echo "... server/server-controler.o"
+	@echo "... server/server-controler.i"
+	@echo "... server/server-controler.s"
 	@echo "... server/server-local.o"
 	@echo "... server/server-local.i"
 	@echo "... server/server-local.s"
 	@echo "... server/server-main.o"
 	@echo "... server/server-main.i"
 	@echo "... server/server-main.s"
-	@echo "... server/server-rtsp.o"
-	@echo "... server/server-rtsp.i"
-	@echo "... server/server-rtsp.s"
+	@echo "... server/server-udp.o"
+	@echo "... server/server-udp.i"
+	@echo "... server/server-udp.s"
 .PHONY : help
 
 
