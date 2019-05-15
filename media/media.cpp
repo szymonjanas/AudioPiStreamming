@@ -39,8 +39,7 @@ void Media::on_pad_added (GstElement *element,
     GstPad *sinkpad;
     GstElement *decoder = (GstElement *) data;
 
-    /* We can now link this pad with the vorbis-decoder sink pad */
-    g_print ("Dynamic pad created, linking demuxer/decoder\n");
+    g_print ("Dynamic pad created, linking elements\n");
 
     sinkpad = gst_element_get_static_pad (decoder, "sink");
 

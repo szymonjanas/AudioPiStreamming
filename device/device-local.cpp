@@ -1,4 +1,4 @@
-#include"server-local.hpp"
+#include"device-local.hpp"
 
 Local::Local()
 {
@@ -17,7 +17,7 @@ void Local::set_pipeline_for_mp3()
     parse    = gst_element_factory_make ("mpegaudioparse","mp3-parse");
     decoder  = gst_element_factory_make ("mpg123audiodec","mp3-decoder");
     conv     = gst_element_factory_make ("audioconvert",  "converter");
-    sink     = gst_element_factory_make ("autoaudiosink", "audio-output");
+    sink     = gst_element_factory_make ("autoaudiosink", "audio-sink");
 
     if (!pipeline || !source ||!parse || !decoder || !conv || !sink) {
       g_printerr ("One element could not be created. Exiting.\n");
@@ -30,9 +30,7 @@ void Local::set_pipeline_for_mp3()
 
     gst_bin_add_many (GST_BIN (pipeline),
                       source, parse, decoder, conv, sink, NULL);
-
-    gst_element_link (source, parse);
-    gst_element_link_many (parse, decoder, conv, sink, NULL);
+    gst_element_link_many (source, parse, decoder, conv, sink, NULL);
 
 }
 

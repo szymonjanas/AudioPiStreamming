@@ -12,7 +12,7 @@ public:
     GstBus *bus;
     guint bus_watch_id;
     GMainLoop *loop;
-    GstElement *pipeline, *decoder , *source, *parse, *conv, *sink, *bin;
+    GstElement *pipeline, *decoder, *pay, *encoder , *source, *parse, *conv, *sink, *bin;
 
     static gboolean bus_call(   GstBus* bus, GstMessage* msg, gpointer data);
     static void on_pad_added (  GstElement *element,

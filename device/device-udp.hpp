@@ -12,4 +12,5 @@ public:
     void set_server(gchar* host, gint port);
     void set_location(const char* location);
     void set_status(MediaStatus status);
+    void set_server_live(gchar* host, gint port);
 };
