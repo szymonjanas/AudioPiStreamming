@@ -23,6 +23,7 @@ void Controler::play_music()
             memcpy (reply.data (), "PLAYING", 7);
             socket.send (reply);
             music.set_reciver_mp3("192.168.1.7", 5000);
+            music.set_status(MediaStatus::PLAY);
         }
     }
 }
