@@ -14,30 +14,40 @@ if ( NOT (GST_FOUND))
 endif()
 set(ENV{PKG_CONFIG_PATH})
 
-find_package(Boost 1.67)
+#find_package(Boost 1.67)
 
+# local cmake scripts
+#list (APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake)
+
+#find_package(ZMQ REQUIRED)
 include_directories("${GST_INCLUDE_DIRS}")
 link_libraries(${GST_LIBRARIES})
 include_directories( ${Boost_INCLUDE_DIRS} )
+#include_directories(${ZMQ_INCLUDE_DIRS})
 
 
-set (SERVER
-	server/server-main.cpp
-        server/server-local.cpp
-        server/server-udp.cpp
-        server/server-controler.cpp
+set (DEVICE
+        device/device-main.cpp
+        device/device-local.cpp
+        device/device-udp.cpp
+        device/device-controler.cpp
         media/media.cpp
-	)
-add_executable(${PROJECT_NAME}-server ${SERVER})
-target_link_libraries(${PROJECT_NAME}-server ${GST_LIBRARIES})
+        device/device-communication.cpp)
+add_executable(${PROJECT_NAME}-device ${DEVICE})
+target_link_libraries(${PROJECT_NAME}-device ${GST_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}-device zmq)
 
-set (CLIENT
-        client/client-main.cpp
-        client/client-audio-processing.cpp
+
+set (BASE
+        basePi/base-main.cpp
+        basePi/base-audio-processing.cpp
+        basePi/base-controler.cpp
         media/media.cpp
-	)
+        basePi/base-communication.cpp)
 include_directories(media)
-add_executable(${PROJECT_NAME}-client ${CLIENT})
-target_link_libraries(${PROJECT_NAME}-client ${GST_LIBRARIES})
+add_executable(${PROJECT_NAME}-base ${BASE})
+target_link_libraries(${PROJECT_NAME}-base ${GST_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}-base zmq)
+
 
 
