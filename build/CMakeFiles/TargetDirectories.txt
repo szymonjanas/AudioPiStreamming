@@ -1,4 +1,0 @@
-/home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles/rebuild_cache.dir
-/home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles/edit_cache.dir
-/home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles/audioPi-server.dir
-/home/szymon/CppProjects/AudioPiStreamming/build/CMakeFiles/audioPi-client.dir
