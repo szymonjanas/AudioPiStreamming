@@ -23,7 +23,7 @@ int main (  int   argc,
 
     gchar* Host = "192.168.1.7";
     gint Port = 5000;
-    const char * zmqAddress = "tcp://192.168.1.2:5555";
+    std::string zmqAddress = "tcp://192.168.1.2:5555";
 
     bool help_not_used = true;
     for (int i = 1; i < argc; ++i)
@@ -49,11 +49,10 @@ int main (  int   argc,
 
     if (help_not_used)
     {
+        Music_main_controller music(Host, Port, zmqAddress);
+        music.set_type_of_stream(Type_Of_Stream::UDP_LIVE);
         while (true)
         {
-            Music_main_controller music;
-            music.set_type_of_stream(Type_Of_Stream::UDP_LIVE);
-            music.set_server_address(Host, Port, zmqAddress);
             char status = getchar();
             switch (status)
             {

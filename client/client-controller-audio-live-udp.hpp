@@ -9,7 +9,7 @@ class Controller : virtual public Music_controller
     Communication_with_headquarters* message;
     bool is_headquarters_need_set;
 public:
-    Controller(gchar * host, gint port, const char * zmqAddress);
+    Controller(gchar * host, gint port, std::string& zmqAddress);
     ~Controller();
     void play_music() override;
     void pause_music() override;

@@ -5,17 +5,18 @@
 
 #include <zmq.hpp>
 #include <string>
+#include "messageBus.hpp"
 
 class Manager
 {
     gchar * host;
     gint port;
-    const char * zmqAddress;
+    std::string& zmqAddress;
 
     Play_audio_live_from_client* play;
     Communication* communication;
 public:
-    Manager (gchar * host, gint port, const char * zmqAddress);
+    Manager (gchar * host, gint port, std::string& zmqAddress);
     ~Manager();
     void start();
 };

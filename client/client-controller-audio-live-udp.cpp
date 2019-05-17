@@ -1,6 +1,6 @@
 #include "client-controller-audio-live-udp.hpp"
 
-Controller::Controller(gchar * host, gint port, const char * zmqAddress)
+Controller::Controller(gchar * host, gint port, std::string& zmqAddress)
 {
     message = new Communication_with_headquarters(zmqAddress);
     server = new Audio_server;

@@ -1,10 +1,10 @@
 #include "headquarters-controler.hpp"
 
-Manager::Manager(gchar * host, gint port, const char * zmqAddress)
+Manager::Manager(gchar * host, gint port, std::string& zmqAddress)
+    :zmqAddress(zmqAddress)
 {
     this->host = host;
     this->port = port;
-    this->zmqAddress = zmqAddress;
 }
 
 Manager::~Manager()
@@ -18,7 +18,9 @@ void Manager::start()
     communication = new Communication (zmqAddress);
     play = new Play_audio_live_from_client;
     while (true) {
+
         std::string request = communication->waiting_for_request_from_client();
+
         if (request == "SETMP3")
         {
             play->set_player_udp_mp3(host, port);

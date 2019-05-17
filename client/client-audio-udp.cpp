@@ -55,7 +55,7 @@ void Audio_server::set_server_live(gchar *host, gint port)
                       source, conv, encoder, pay, sink, NULL);
     gst_element_link_many (source, conv, encoder, pay, sink, NULL);
 
-    g_object_set(G_OBJECT(source), "client", "alsa_output.pci-0000_00_14.2.analog-stereo.monitor", NULL);
+    g_object_set(G_OBJECT(source), "device", "alsa_output.pci-0000_00_14.2.analog-stereo.monitor", NULL);
     g_object_set(G_OBJECT(sink), "host", host, "port", port, NULL);
 }
 

@@ -3,17 +3,17 @@
 #include "headquarters-controler.hpp"
 #include <sstream>
 #include <iostream>
-#include "messageBus.hpp"
+//#include "messageBus.hpp"
 
 int main (  int   argc,
         char *argv[])
 {
 
     std::cout << "WORKING" << std::endl;
-
+    bus_on();
     gchar* Host = "192.168.1.7";
     gint Port = 5000;
-    const char * zmqAddress = "tcp://192.168.1.2:5555";
+    std::string zmqAddress = "tcp://192.168.1.2:5555";
 
     bool help_not_used = true;
     for (int i = 1; i < argc; ++i)
@@ -38,6 +38,7 @@ int main (  int   argc,
     }
     while (true)
     {
+        bus_message_short("PROGRAM RUNNING...");
         Manager manager(Host, Port, zmqAddress);
         manager.start();
     }
