@@ -8,6 +8,8 @@
 class Communication
 {
     std::string& zmqAddress;
+    zmq::context_t* context;
+    zmq::socket_t* socket;
 public:
     Communication(std::string& zmqAddress);
     ~Communication();

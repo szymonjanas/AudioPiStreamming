@@ -19,10 +19,11 @@ class Music_main_controller
     std::string& zmqAddress;
 
     Type_Of_Stream type;
+    bool is_stop;
 public:
     Music_main_controller(gchar * Host, gint Port, std::string& zmqAddress);
     ~Music_main_controller();
     void set_type_of_stream(Type_Of_Stream type);
-    void set_status_of_stream(MediaStatus status);
+    bool set_status_of_stream(MediaStatus status);
     void set_file_location(const char * file_location);
 };

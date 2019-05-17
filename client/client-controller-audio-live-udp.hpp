@@ -9,6 +9,7 @@ class Music_controller_live_mp3_udp : virtual public Music_controller
     Audio_server* server;
     Communication_with_headquarters* message;
     bool is_headquarters_need_set;
+    bool is_play;
 public:
     Music_controller_live_mp3_udp(gchar * host, gint port, std::string& zmqAddress);
     ~Music_controller_live_mp3_udp();

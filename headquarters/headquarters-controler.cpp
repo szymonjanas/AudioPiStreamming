@@ -21,6 +21,7 @@ void Manager::start()
 
         std::string request = communication->waiting_for_request_from_client();
 
+
         if (request == "SETMP3")
         {
             play->set_player_udp_mp3(host, port);

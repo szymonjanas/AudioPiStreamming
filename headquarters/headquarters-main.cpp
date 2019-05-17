@@ -37,6 +37,7 @@ int main (  int   argc,
             bus_message_short("LOCAL TEST ENABLED");
         }
     }
+
     while (true)
     {
         bus_message_short("PROGRAM RUNNING...");

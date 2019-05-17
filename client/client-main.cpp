@@ -52,22 +52,31 @@ int main (  int   argc,
     if (help_not_used)
     {
         Music_main_controller music(Host, Port, zmqAddress);
-        music.set_type_of_stream(Type_Of_Stream::UDP_LIVE);
+        bool first_time = true;
         while (true)
         {
             char status = getchar();
             switch (status)
             {
                 case 'p':
+                    bus_message_short("TEST SWITCH");
+                    if (first_time){
+                        bus_message_short("TEST");
+                        first_time = false;
+                        music.set_type_of_stream(Type_Of_Stream::UDP_LIVE);
+                    }
                     music.set_status_of_stream(MediaStatus::PLAY);
                     break;
                 case 'P':
-                    music.set_status_of_stream(MediaStatus::PAUSE);
+                    if (!first_time)
+                        music.set_status_of_stream(MediaStatus::PAUSE);
                     break;
                 case 's':
-                    music.set_status_of_stream(MediaStatus::STOP);
+                    if (!first_time){
+                        music.set_status_of_stream(MediaStatus::STOP);
+                        first_time = true;
+                    }
                     break;
-
             }
         }
     }
