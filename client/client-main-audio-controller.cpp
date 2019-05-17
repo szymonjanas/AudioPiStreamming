@@ -27,7 +27,7 @@ void Music_main_controller::set_type_of_stream(Type_Of_Stream type)
             }
             break;
         case Type_Of_Stream::UDP_LIVE:
-                music = new Controller(host, port, zmqAddress);
+                music = new Music_controller_live_mp3_udp(host, port, zmqAddress);
             break;
         case Type_Of_Stream::LOCAL_FILE:
             if (is_file_location_set)

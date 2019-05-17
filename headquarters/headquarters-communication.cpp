@@ -3,6 +3,7 @@
 Communication::Communication(std::string& zmqAddress) :
     zmqAddress(zmqAddress)
 {
+    bus_message_log_address("Communication", "setted", zmqAddress);
 }
 
 Communication::~Communication()
@@ -20,6 +21,7 @@ std::string Communication::waiting_for_request_from_client()
         socket.recv (&request);
         unsigned long size = request.size();
         std::string data(static_cast<char*>(request.data()), size);
+        bus_communication_log("REQUEST RECIVED", data);
         if (data.size() > 0)
             return data;
     }

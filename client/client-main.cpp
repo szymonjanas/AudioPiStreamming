@@ -19,11 +19,13 @@ int main (  int   argc,
         char *argv[])
 {
 
+    bus_on();
+    bus_on_communication();
     std::cout << "CLIENT WORKING" << std::endl;
 
     gchar* Host = "192.168.1.7";
     gint Port = 5000;
-    std::string zmqAddress = "tcp://192.168.1.2:5555";
+    std::string zmqAddress = "tcp://192.168.1.7:5555";
 
     bool help_not_used = true;
     for (int i = 1; i < argc; ++i)

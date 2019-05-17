@@ -2,6 +2,7 @@
 
 #include <zmq.hpp>
 #include <string>
+#include "messageBus.hpp"
 
 class Communication_with_headquarters
 {

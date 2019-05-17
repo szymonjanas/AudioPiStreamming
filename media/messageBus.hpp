@@ -44,3 +44,5 @@ void bus_message_log_ip_port (std::string log_location, std::string log_message,
                      "                 || port: " << port << std::endl;
 }
 
+void bus_on_communication();
+void bus_communication_log(std::string direction, std::string log);

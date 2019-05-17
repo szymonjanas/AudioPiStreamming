@@ -2,6 +2,7 @@
 
 namespace {
     bool is_bus_on = false;
+    bool is_communication_bus_on = false;
 }
 
 void bus_on()
@@ -57,4 +58,15 @@ void bus_message_log_address (std::string log_location, std::string log_message,
         std::cout << " > > LOG IP:PORT || from: " << log_location << std::endl <<
                      "                 || name: " << log_message << std::endl <<
                      "                 || protocol://IP:port:  " << address  << std::endl;
+}
+
+void bus_on_communication()
+{
+    is_communication_bus_on = true;
+}
+
+void bus_communication_log(std::string direction, std::string log)
+{
+    if (is_communication_bus_on)
+        std::cout << " > > COMMUNICATION: " << direction << " || " << log << std::endl;
 }
