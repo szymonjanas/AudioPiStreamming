@@ -3,21 +3,42 @@
 #include "headquarters-controler.hpp"
 #include <sstream>
 #include <iostream>
+#include "messageBus.hpp"
 
 int main (  int   argc,
         char *argv[])
 {
 
     std::cout << "WORKING" << std::endl;
-    int Argc = 1;
-    char** Argv = new char* ();
-    Argv[0] = "foo";
-    gst_init (&Argc, &Argv);
 
-    Controler ctrl;
-    ctrl.play_music();
+    gchar* Host = "192.168.1.7";
+    gint Port = 5000;
+    const char * zmqAddress = "tcp://192.168.1.2:5555";
 
-//    Reciver_mp3 reciver;
-//    reciver.set_reciver_mp3("192.168.1.7", 5000);
-//    reciver.set_status(MediaStatus::PLAY);
+    bool help_not_used = true;
+    for (int i = 1; i < argc; ++i)
+    {
+        if (!strcmp (argv[i], "-h") or !strcmp(argv[i], "--help"))
+        {
+            help_not_used = false;
+        }
+        if (!strcmp (argv[i], "-b") or !strcmp(argv[i], "--bus"))
+        {
+            bus_on();
+            if (bus_status())
+                bus_message_short("BUS TURN ON!");
+        }
+        if (!strcmp (argv[i], "-t") or !strcmp(argv[i], "--test"))
+        {
+            Host = "127.0.0.1";
+            Port = 5000;
+            zmqAddress = "tcp://127.0.0.1:5555";
+            bus_message_short("LOCAL TEST ENABLED");
+        }
+    }
+    while (true)
+    {
+        Manager manager(Host, Port, zmqAddress);
+        manager.start();
+    }
 }

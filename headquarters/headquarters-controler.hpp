@@ -6,8 +6,16 @@
 #include <zmq.hpp>
 #include <string>
 
-class Controler
+class Manager
 {
+    gchar * host;
+    gint port;
+    const char * zmqAddress;
+
+    Play_audio_live_from_client* play;
+    Communication* communication;
 public:
-    void play_music();
+    Manager (gchar * host, gint port, const char * zmqAddress);
+    ~Manager();
+    void start();
 };

@@ -1,15 +1,14 @@
 #include"headquarters-audio-processing.hpp"
 
-void Reciver_mp3::set_status(MediaStatus status)
+void Play_audio_live_from_client::set_status(MediaStatus status)
 {
     Media::set_status(status);
 }
 
-void Reciver_mp3::set_reciver_mp3(gchar* host, gint port)
+void Play_audio_live_from_client::set_player_udp_mp3(gchar* host, gint port)
 {
     pipeline = gst_pipeline_new ("audio-streamer");
     source   = gst_element_factory_make ("udpsrc",       "udp-source");
-   // queue    = gst_element_factory_make ("queue","queue");
     depay    = gst_element_factory_make ("rtpmpadepay",  "depay");
     parse    = gst_element_factory_make ("mpegaudioparse", "parse");
     decoder  = gst_element_factory_make ("mpg123audiodec", "decoder");
@@ -17,9 +16,7 @@ void Reciver_mp3::set_reciver_mp3(gchar* host, gint port)
     resample = gst_element_factory_make ("audioresample", "resample");
     sink     = gst_element_factory_make ("autoaudiosink", "sink");
 
-    if (!pipeline || !source //|| !queue
-            || !depay
-      || !parse || !convert || !decoder || !resample || !sink) {
+    if (!pipeline || !source || !depay || !parse || !convert || !decoder || !resample || !sink) {
     g_printerr ("One element could not be created. Exiting.\n");
     exit(1);
     }
@@ -29,10 +26,8 @@ void Reciver_mp3::set_reciver_mp3(gchar* host, gint port)
     gst_object_unref (bus);
 
     gst_bin_add_many (GST_BIN (pipeline),
-    source, //queue,
-                      depay,parse, decoder, convert, resample, sink, NULL);
-    gst_element_link_many (source, //queue,
-                           depay, parse, decoder, convert, resample, sink, NULL);
+    source, depay,parse, decoder, convert, resample, sink, NULL);
+    gst_element_link_many (source, depay, parse, decoder, convert, resample, sink, NULL);
 
 
     GstCaps* caps;
