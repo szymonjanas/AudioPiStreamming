@@ -8,6 +8,7 @@ class Music_file_udp_controller : virtual public Music_controller
 {
     Audio_server* server;
     Communication_with_headquarters* message;
+    bool is_headquarters_need_set;
 public:
     Music_file_udp_controller(gchar * host, gint port, const char * zmqAddress);
     ~Music_file_udp_controller();

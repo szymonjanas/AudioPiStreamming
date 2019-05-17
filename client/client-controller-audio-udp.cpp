@@ -5,6 +5,7 @@ Music_file_udp_controller::Music_file_udp_controller(gchar * host, gint port, co
     server = new Audio_server;
     server->set_server(host, port);
     message = new Communication_with_headquarters(zmqAddress);
+    is_headquarters_need_set = true;
 }
 
 Music_file_udp_controller::~Music_file_udp_controller()
@@ -20,6 +21,11 @@ void Music_file_udp_controller::set_file_location(const char * location)
 
 void Music_file_udp_controller::play_music()
 {
+    if (is_headquarters_need_set)
+    {
+        message->request_for_headquarters("SETMP3", 6);
+        is_headquarters_need_set = false;
+    }
     if (message->request_for_headquarters("PLAY", 4) == "PLAYING")
         server->set_status(MediaStatus::PLAY);
 }

@@ -24,8 +24,8 @@ class Music_main_controller
 public:
     Music_main_controller();
     ~Music_main_controller();
-    void set_type_of_stream(Type_Of_Stream);
-    void set_status_of_stream(MediaStatus);
-    void set_file_location(const char *);
-    void set_server_address(gchar *, gint, const char *);
+    void set_type_of_stream(Type_Of_Stream type);
+    void set_status_of_stream(MediaStatus status);
+    void set_file_location(const char * file_location);
+    void set_server_address(gchar * Host, gint Port, const char * ZmqAddress);
 };

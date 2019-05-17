@@ -1,30 +1,36 @@
 #include "client-controller-audio-live-udp.hpp"
 
-Music_live_udp_controller::Music_live_udp_controller(gchar * host, gint port, const char * zmqAddress)
+Controller::Controller(gchar * host, gint port, const char * zmqAddress)
 {
     message = new Communication_with_headquarters(zmqAddress);
     server = new Audio_server;
     server->set_server_live(host, port);
+    is_headquarters_need_set = true;
 }
 
-Music_live_udp_controller::~Music_live_udp_controller()
+Controller::~Controller()
 {
     delete server;
     delete message;
 }
 
-void Music_live_udp_controller::play_music()
+void Controller::play_music()
 {
+    if (is_headquarters_need_set)
+    {
+        if (message->request_for_headquarters("SETMP3", 6) == "SETTED")
+            is_headquarters_need_set = false;
+    }
    if (message->request_for_headquarters("PLAY", 4) == "PLAYING")
         server->set_status(MediaStatus::PLAY);
 }
 
-void Music_live_udp_controller::pause_music()
+void Controller::pause_music()
 {
     server->set_status(MediaStatus::PAUSE);
 }
 
-void Music_live_udp_controller::stop_music()
+void Controller::stop_music()
 {
     server->set_status(MediaStatus::STOP);
     if (!(message->request_for_headquarters("STOP", 4) == "STOPED"))
@@ -33,7 +39,7 @@ void Music_live_udp_controller::stop_music()
     }
 }
 
-void Music_live_udp_controller::set_file_location(const char *)
+void Controller::set_file_location(const char *)
 {
     // FOR VIRTUAL WORKINGconst char
 }

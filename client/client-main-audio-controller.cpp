@@ -44,7 +44,7 @@ void Music_main_controller::set_status_of_stream(MediaStatus status)
         case Type_Of_Stream::UDP_LIVE:
             if (is_ip_port_set)
             {
-                music = new Music_live_udp_controller(host, port, zmqAddress);
+                music = new Controller(host, port, zmqAddress);
             }
             break;
         case Type_Of_Stream::LOCAL_FILE:
