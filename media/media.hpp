@@ -2,6 +2,7 @@
 
 #include<gst/gst.h>
 #include <cstdlib> // for exit function on raspberry
+//#include "messageBus.hpp"
 
 enum class MediaStatus {PLAY, PAUSE, STOP};
 

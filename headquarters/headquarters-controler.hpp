@@ -1,7 +1,7 @@
 #pragma once
 
-#include "base-communication.h"
-#include "base-audio-processing.hpp"
+#include "headquarters-communication.h"
+#include "headquarters-audio-processing.hpp"
 
 #include <zmq.hpp>
 #include <string>

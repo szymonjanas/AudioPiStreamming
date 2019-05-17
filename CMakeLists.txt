@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.7)
 
 set (CMAKE_CXX_STANDARD 11)
-project(audioPi)
+project(audio)
 
 set(PKG_CONFIG_USE_CMAKE_PREFIX_PATH ON)
 find_package(PkgConfig REQUIRED)
@@ -26,28 +26,32 @@ include_directories( ${Boost_INCLUDE_DIRS} )
 #include_directories(${ZMQ_INCLUDE_DIRS})
 
 
-set (DEVICE
-        device/device-main.cpp
-        device/device-local.cpp
-        device/device-udp.cpp
-        device/device-controler.cpp
+set (CLIENT
+        client/client-main.cpp
+        client/client-audio-local.cpp
+        client/client-audio-udp.cpp
+        client/client-controller-audio.cpp
+        client/client-controller-audio-udp.cpp
+        client/client-controller-audio-local.cpp
+        client/client-controller-audio-live-udp.cpp
+        client/client-main-audio-controller.cpp
         media/media.cpp
-        device/device-communication.cpp)
-add_executable(${PROJECT_NAME}-device ${DEVICE})
-target_link_libraries(${PROJECT_NAME}-device ${GST_LIBRARIES})
-target_link_libraries(${PROJECT_NAME}-device zmq)
+        client/client-communication-with-headquarters.cpp)
+add_executable(${PROJECT_NAME}-client ${CLIENT})
+target_link_libraries(${PROJECT_NAME}-client ${GST_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}-client zmq)
 
 
-set (BASE
-        basePi/base-main.cpp
-        basePi/base-audio-processing.cpp
-        basePi/base-controler.cpp
+set (HEADQUARTERS
+        headquarters/headquarters-main.cpp
+        headquarters/headquarters-audio-processing.cpp
+        headquarters/headquarters-controler.cpp
         media/media.cpp
-        basePi/base-communication.cpp)
+        headquarters/headquarters-communication.cpp)
 include_directories(media)
-add_executable(${PROJECT_NAME}-base ${BASE})
-target_link_libraries(${PROJECT_NAME}-base ${GST_LIBRARIES})
-target_link_libraries(${PROJECT_NAME}-base zmq)
+add_executable(${PROJECT_NAME}-headquarters ${HEADQUARTERS})
+target_link_libraries(${PROJECT_NAME}-headquarters ${GST_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}-headquarters zmq)
 
 
 

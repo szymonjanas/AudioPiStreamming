@@ -1,16 +1,12 @@
-#include"device-local.hpp"
+#include"client-audio-local.hpp"
 
-Local::Local()
-{
+Audio_local::Audio_local()
+{}
 
-}
+Audio_local::~Audio_local()
+{}
 
-Local::~Local()
-{
-
-}
-
-void Local::set_pipeline_for_mp3()
+void Audio_local::set_pipeline_for_mp3()
 {
     pipeline = gst_pipeline_new ("audio-player");
     source   = gst_element_factory_make ("filesrc",       "file-source");
@@ -34,13 +30,13 @@ void Local::set_pipeline_for_mp3()
 
 }
 
-void Local::set_location(const char *location)
+void Audio_local::set_location(const char *location)
 {
     g_object_set (G_OBJECT (source), "location", location , NULL);
     g_print ("File location: %s\n", location);
 }
 
-void Local::set_status(MediaStatus status)
+void Audio_local::set_status(MediaStatus status)
 {
     Media::set_status(status);
 }

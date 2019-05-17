@@ -4,6 +4,11 @@ static bool delete_flag = true;
 
 Media::Media()
 {
+    int Argc = 1;
+    char** Argv = new char* ();
+    Argv[0] = "foo";
+    gst_init (&Argc, &Argv);
+
     loop = g_main_loop_new (NULL, FALSE);
     delete_flag = true;
 }
@@ -87,11 +92,10 @@ void Media::set_status(MediaStatus status)
         gst_element_set_state (pipeline, GST_STATE_PLAYING);
         set_flag_for_new_pipeline();
         g_print ("Running...\n");
-        g_main_loop_run (loop);
         break;
     case MediaStatus::PAUSE:
         gst_element_set_state (pipeline, GST_STATE_PAUSED);
-        g_print ("Paused\n");
+        g_print ("Paused,\n");
         break;
     case MediaStatus::STOP:
         g_print ("Returned, stopping playback\n");

@@ -1,6 +1,6 @@
 #include <gst/gst.h>
-#include "base-audio-processing.hpp"
-#include "base-controler.hpp"
+#include "headquarters-audio-processing.hpp"
+#include "headquarters-controler.hpp"
 #include <sstream>
 #include <iostream>
 
