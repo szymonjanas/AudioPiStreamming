@@ -36,6 +36,7 @@ set (CLIENT
         client/client-controller-audio-live-udp.cpp
         client/client-main-audio-controller.cpp
         media/media.cpp
+        media/messageBus.cpp
         client/client-communication-with-headquarters.cpp)
 add_executable(${PROJECT_NAME}-client ${CLIENT})
 target_link_libraries(${PROJECT_NAME}-client ${GST_LIBRARIES})
@@ -47,6 +48,7 @@ set (HEADQUARTERS
         headquarters/headquarters-audio-processing.cpp
         headquarters/headquarters-controler.cpp
         media/media.cpp
+        media/messageBus.cpp
         headquarters/headquarters-communication.cpp)
 include_directories(media)
 add_executable(${PROJECT_NAME}-headquarters ${HEADQUARTERS})
