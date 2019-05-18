@@ -6,7 +6,7 @@ Communication::Communication(std::string& zmqAddress) :
     bus_message_log_address("Communication", "setted", zmqAddress);
     context = new zmq::context_t (1);
     socket = new zmq::socket_t (*context, ZMQ_REP);
-    socket->bind(zmqAddress);
+    socket->bind(zmqAddress.c_str());
 }
 
 Communication::~Communication()
