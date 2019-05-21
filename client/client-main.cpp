@@ -23,7 +23,7 @@ int main (  int   argc,
     bus_on_communication();
     std::cout << "CLIENT WORKING" << std::endl;
 
-    gchar* Host = "192.168.1.7";
+    const gchar* Host = "192.168.1.7";
     gint Port = 5000;
     std::string zmqAddress = "tcp://192.168.1.7:5555";
 
