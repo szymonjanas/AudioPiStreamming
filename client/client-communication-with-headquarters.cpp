@@ -8,8 +8,8 @@ Communication_with_headquarters::Communication_with_headquarters(const std::stri
     bus_message_log_address("Communication", "setted zmq", zmqAddress);
     context = new zmq::context_t (1);
     socket = new zmq::socket_t (*context, ZMQ_REQ);
-    socket->connect(zmqAddress);
-
+    const char * zmqConnectAddress = zmqAddress.c_str();
+    socket->connect(zmqConnectAddress);
 }
 
 Communication_with_headquarters::~Communication_with_headquarters()
