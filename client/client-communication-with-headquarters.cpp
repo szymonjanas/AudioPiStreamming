@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-Communication_with_headquarters::Communication_with_headquarters(std::string& zmqAddress) :
+Communication_with_headquarters::Communication_with_headquarters(const std::string& zmqAddress) :
     zmqAddress(zmqAddress)
 {
     bus_message_log_address("Communication", "setted zmq", zmqAddress);
