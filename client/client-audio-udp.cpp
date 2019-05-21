@@ -11,7 +11,7 @@ void Audio_server::set_status(MediaStatus status)
     Media::set_status(status);
 }
 
-void Audio_server::set_server(gchar* host, gint port)
+void Audio_server::set_server(const gchar* host, gint port)
 {
     pipeline = gst_pipeline_new ("audio-streamer");
     source   = gst_element_factory_make ("filesrc",       "file-source");
@@ -34,7 +34,7 @@ void Audio_server::set_server(gchar* host, gint port)
     g_object_set(G_OBJECT(sink), "host", host, "port", port, NULL);
 }
 
-void Audio_server::set_server_live(gchar *host, gint port)
+void Audio_server::set_server_live(const gchar *host, gint port)
 {
     pipeline = gst_pipeline_new ("audio-streamer");
     source   = gst_element_factory_make ("pulsesrc",        "live-source");

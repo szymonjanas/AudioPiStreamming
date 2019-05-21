@@ -14,14 +14,14 @@ class Music_main_controller
     bool is_file_location_set;
 
     const char * file_location;
-    gchar * host;
+    const gchar * host;
     gint port;
     std::string& zmqAddress;
 
     Type_Of_Stream type;
     bool is_stop;
 public:
-    Music_main_controller(gchar * Host, gint Port, std::string& zmqAddress);
+    Music_main_controller(const gchar * Host, gint Port, std::string& zmqAddress);
     ~Music_main_controller();
     void set_type_of_stream(Type_Of_Stream type);
     bool set_status_of_stream(MediaStatus status);

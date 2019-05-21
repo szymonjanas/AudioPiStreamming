@@ -1,11 +1,10 @@
 #include "client-main-audio-controller.hpp"
 
-Music_main_controller::Music_main_controller(gchar * Host, gint Port, std::string& zmqAddress)
-    : zmqAddress(zmqAddress)
+Music_main_controller::Music_main_controller(const gchar * Host, gint Port, std::string& zmqAddress)
+    : zmqAddress(zmqAddress), host(Host)
 {
    // music = NULL;
     is_file_location_set = false;
-    host = Host;
     port = Port;
     is_stop = true;
 }

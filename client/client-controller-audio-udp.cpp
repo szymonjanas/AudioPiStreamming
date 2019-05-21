@@ -1,6 +1,6 @@
 #include "client-controller-audio-udp.hpp"
 
-Music_file_udp_controller::Music_file_udp_controller(gchar * host, gint port, std::string& zmqAddress)
+Music_file_udp_controller::Music_file_udp_controller(const gchar * host, gint port, std::string& zmqAddress)
 {
     server = new Audio_server;
     server->set_server(host, port);

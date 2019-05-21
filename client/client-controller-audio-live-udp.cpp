@@ -1,6 +1,6 @@
 #include "client-controller-audio-live-udp.hpp"
 
-Music_controller_live_mp3_udp::Music_controller_live_mp3_udp(gchar * host, gint port, std::string& zmqAddress)
+Music_controller_live_mp3_udp::Music_controller_live_mp3_udp(const gchar * host, gint port, std::string& zmqAddress)
 {
     message = new Communication_with_headquarters(zmqAddress);
     server = new Audio_server;
