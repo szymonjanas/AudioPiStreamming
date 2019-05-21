@@ -18,7 +18,6 @@ install:
         - sudo apt-get install libzmq3-dev
         - sudo apt-get install build-essential
         - sudo apt-get install qt5-default
-        - sudo apt-get install qml-module-qtquick-controls
         - sudo apt-get install qtbase5-dev
         - sudo apt-get install qtdeclarative5-dev
         - sudo apt-get install qt5-qmake
