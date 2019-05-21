@@ -3,6 +3,12 @@ cmake_minimum_required(VERSION 3.7)
 set (CMAKE_CXX_STANDARD 11)
 project(audio)
 
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 set(PKG_CONFIG_USE_CMAKE_PREFIX_PATH ON)
 find_package(PkgConfig REQUIRED)
 if ( NOT (PKGCONFIG_FOUND))
@@ -13,6 +19,8 @@ if ( NOT (GST_FOUND))
       message(FATAL_ERROR "Please Install Gstreamer Dev: CMake will Exit")
 endif()
 set(ENV{PKG_CONFIG_PATH})
+
+find_package(Qt5 COMPONENTS Core Quick REQUIRED)
 
 #find_package(Boost 1.67)
 
@@ -35,12 +43,19 @@ set (CLIENT
         client/client-controller-audio-local.cpp
         client/client-controller-audio-live-udp.cpp
         client/client-main-audio-controller.cpp
+        client/client-qt-controller.cpp
         media/media.cpp
         media/messageBus.cpp
+        qt/qml.qrc
         client/client-communication-with-headquarters.cpp)
-add_executable(${PROJECT_NAME}-client ${CLIENT})
+
+
+
+add_executable(${PROJECT_NAME}-client ${CLIENT} )
 target_link_libraries(${PROJECT_NAME}-client ${GST_LIBRARIES})
 target_link_libraries(${PROJECT_NAME}-client zmq)
+target_link_libraries(${PROJECT_NAME}-client Qt5::Core Qt5::Quick)
+
 
 
 set (HEADQUARTERS
@@ -54,6 +69,4 @@ include_directories(media)
 add_executable(${PROJECT_NAME}-headquarters ${HEADQUARTERS})
 target_link_libraries(${PROJECT_NAME}-headquarters ${GST_LIBRARIES})
 target_link_libraries(${PROJECT_NAME}-headquarters zmq)
-
-
 

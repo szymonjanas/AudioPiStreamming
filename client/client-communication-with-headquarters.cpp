@@ -26,6 +26,7 @@ std::string Communication_with_headquarters::request_for_headquarters(const void
         socket->send (request);
         bus_message_short("REQUEST SEND");
 
+
         zmq::message_t reply;
         socket->recv (&reply);
         unsigned long size = reply.size();

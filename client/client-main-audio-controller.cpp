@@ -46,12 +46,15 @@ bool Music_main_controller::set_status_of_stream(MediaStatus status)
     switch (status)
     {
         case MediaStatus::PLAY:
+            status = MediaStatus::PLAY;
             music->play_music();
             break;
         case MediaStatus::PAUSE:
+            status = MediaStatus::PAUSE;
             music->pause_music();
             break;
         case MediaStatus::STOP:
+            status = MediaStatus::STOP;
             music->stop_music();
             break;
     }
@@ -62,4 +65,9 @@ void Music_main_controller::set_file_location(const char * file_location)
 {
         this->file_location = file_location;
         is_file_location_set = true;
+}
+
+MediaStatus Music_main_controller::getMediaStatus() const
+{
+    return status;
 }

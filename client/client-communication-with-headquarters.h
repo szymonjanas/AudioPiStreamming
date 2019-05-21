@@ -3,6 +3,7 @@
 #include <zmq.hpp>
 #include <string>
 #include "messageBus.hpp"
+#include <iostream>
 
 class Communication_with_headquarters
 {

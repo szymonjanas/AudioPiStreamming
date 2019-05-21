@@ -5,7 +5,7 @@
 #include "client-controller-audio.hpp"
 #include <string>
 
-enum class Type_Of_Stream {UDP_LIVE, UDP_FILE, LOCAL_FILE};
+enum class Type_Of_Stream {UDP_LIVE, UDP_FILE, LOCAL_FILE, EMPTY};
 
 
 class Music_main_controller
@@ -20,10 +20,13 @@ class Music_main_controller
 
     Type_Of_Stream type;
     bool is_stop;
+
+    MediaStatus status;
 public:
     Music_main_controller(const gchar * Host, gint Port, std::string& zmqAddress);
     ~Music_main_controller();
     void set_type_of_stream(Type_Of_Stream type);
     bool set_status_of_stream(MediaStatus status);
     void set_file_location(const char * file_location);
+    MediaStatus getMediaStatus() const;
 };
