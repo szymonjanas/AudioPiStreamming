@@ -2,14 +2,14 @@
 #include <string>
 #include <map>
 enum class Request{
-    TEST_CONNECTION,
-    ERROR
+    ERROR,
+    SERVER_TEST_CONNECTION
 };
 
 enum class Replay{
-    TEST_PASS,
-    TEST_FAIL,
-    ERROR
+    ERROR,
+    SERVER_CONNECTED,
+    SERVER_NOT_RESPOND
 };
 
 using Message_to_headquarter = std::pair<const void *, size_t>;
@@ -20,8 +20,9 @@ class Communication_state_converter
     std::map<Replay, std::string> replay;
 public:
     Communication_state_converter();
-    Message_to_headquarter convert_request_to_string(Request request) const;
-    Message_to_headquarter convert_replay_to_string(Replay replay) const;
-    Request convert_requert_to_enum(std::string request) const;
-    Replay convert_replay_to_enum(std::string replay) const;
+
+    Message_to_headquarter convert_to_server_request(Request request) const;
+    Message_to_headquarter convert_to_server_replay(Replay replay) const;
+    Request convert_server_requert_to_enum(std::string request) const;
+    Replay convert_server_replay_to_enum(std::string replay) const;
 };

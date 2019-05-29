@@ -2,13 +2,13 @@
 
 Communication_state_converter::Communication_state_converter()
 {
-    request[Request::TEST_CONNECTION] = "TEST_CONNECTION";
+    request[Request::SERVER_TEST_CONNECTION] = "SERVER_TEST_CONNECTION";
 
-    replay[Replay::TEST_PASS] = "TEST_PASS";
-    replay[Replay::TEST_FAIL] = "TEST_FAIL";
+    replay[Replay::SERVER_CONNECTED] = "SERVER_CONNECTED";
+    replay[Replay::SERVER_NOT_RESPOND] = "SERVER_NOT_RESPOND";
 }
 
-Message_to_headquarter Communication_state_converter::convert_replay_to_string(Replay replay) const
+Message_to_headquarter Communication_state_converter::convert_to_server_replay(Replay replay) const
 {
     std::string str_replay = this->replay.at(replay);
     Message_to_headquarter message;
@@ -17,7 +17,7 @@ Message_to_headquarter Communication_state_converter::convert_replay_to_string(R
     return message;
 }
 
-Message_to_headquarter Communication_state_converter::convert_request_to_string(Request request) const
+Message_to_headquarter Communication_state_converter::convert_to_server_request(Request request) const
 {
     std::string str_request = this->request.at(request);
     Message_to_headquarter message;
@@ -26,14 +26,14 @@ Message_to_headquarter Communication_state_converter::convert_request_to_string(
     return message;
 }
 
-Request Communication_state_converter::convert_requert_to_enum(std::string request) const
+Request Communication_state_converter::convert_server_requert_to_enum(std::string request) const
 {
     for (auto i : this->request)
         if (i.second == request) return i.first;
     return Request::ERROR;
 }
 
-Replay Communication_state_converter::convert_replay_to_enum(std::string replay) const
+Replay Communication_state_converter::convert_server_replay_to_enum(std::string replay) const
 {
     for (auto i : this->replay)
         if (i.second == replay) return i.first;
