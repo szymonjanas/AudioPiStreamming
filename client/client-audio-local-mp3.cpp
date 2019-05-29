@@ -1,4 +1,4 @@
-#include"client-audio-local.hpp"
+#include"client-audio-local-mp3.hpp"
 
 Audio_local::Audio_local()
 {}
@@ -6,7 +6,7 @@ Audio_local::Audio_local()
 Audio_local::~Audio_local()
 {}
 
-void Audio_local::set_pipeline_for_mp3()
+void Audio_local::set_pipeline()
 {
     pipeline = gst_pipeline_new ("audio-player");
     source   = gst_element_factory_make ("filesrc",       "file-source");
