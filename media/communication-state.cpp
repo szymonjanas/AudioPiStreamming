@@ -3,9 +3,13 @@
 Communication_state_converter::Communication_state_converter()
 {
     request[Request::SERVER_TEST_CONNECTION] = "SERVER_TEST_CONNECTION";
+    request[Request::SERVER_SET_UDP] = "SERVER_SET_UDP";
+    request[Request::SERVER_STOP_UDP] = "SERVER_STOP_UDP";
 
     replay[Replay::SERVER_CONNECTED] = "SERVER_CONNECTED";
     replay[Replay::SERVER_NOT_RESPOND] = "SERVER_NOT_RESPOND";
+    replay[Replay::SERVER_SETTED_UDP] = "SERVER_SETTED_UDP";
+    replay[Replay::SERVER_STOPED_UDP] = "SERVER_STOPED_UDP";
 }
 
 Message_to_headquarter Communication_state_converter::convert_to_server_replay(Replay replay) const

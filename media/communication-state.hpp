@@ -3,13 +3,17 @@
 #include <map>
 enum class Request{
     ERROR,
-    SERVER_TEST_CONNECTION
+    SERVER_TEST_CONNECTION,
+    SERVER_SET_UDP,
+    SERVER_STOP_UDP
 };
 
 enum class Replay{
     ERROR,
     SERVER_CONNECTED,
-    SERVER_NOT_RESPOND
+    SERVER_NOT_RESPOND,
+    SERVER_SETTED_UDP,
+    SERVER_STOPED_UDP
 };
 
 using Message_to_headquarter = std::pair<const void *, size_t>;
