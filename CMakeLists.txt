@@ -35,19 +35,30 @@ include_directories( ${Boost_INCLUDE_DIRS} )
 
 set (CLIENT
         client/client-main.cpp
-        client/client-audio-local.cpp
-        client/client-audio-udp.cpp
-        client/client-controller-audio.cpp
-        client/client-controller-audio-udp.cpp
-        client/client-controller-audio-local.cpp
-        client/client-controller-audio-live-udp.cpp
-        client/client-main-audio-controller.cpp
-        client/client-qt-controller.cpp
+
+        client/client-audio.cpp
+        client/client-audio-local-mp3.cpp
+        client/client-audio-udp-file.cpp
+        client/client-audio-udp-live.cpp
+
+        client/client-audio-controller.cpp
+
         media/media.cpp
         media/messageBus.cpp
-        qt/qml.qrc
-        client/client-communication-with-headquarters.cpp)
 
+        client/client-communication-with-headquarters.cpp
+        client/client-communication-controller-with-headquarters.cpp
+        media/communication-state.cpp
+
+        client/client-qt-controller.cpp
+        qt/qml.qrc
+        )
+
+set (SRC_TEST
+     client-tests/test-main.cpp
+     client-tests/test-communication-state.cpp)
+add_executable(${PROJECT_NAME}-tests ${SRC_TEST})
+target_link_libraries(${PROJECT_NAME}-tests ${PROJECT_NAME}-lib)
 
 
 add_executable(${PROJECT_NAME}-client ${CLIENT} )
@@ -63,7 +74,8 @@ set (HEADQUARTERS
         headquarters/headquarters-controler.cpp
         media/media.cpp
         media/messageBus.cpp
-        headquarters/headquarters-communication.cpp)
+        headquarters/headquarters-communication.cpp
+        media/communication-state.cpp)
 include_directories(media)
 add_executable(${PROJECT_NAME}-headquarters ${HEADQUARTERS})
 target_link_libraries(${PROJECT_NAME}-headquarters ${GST_LIBRARIES})
