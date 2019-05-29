@@ -1,17 +1,16 @@
 #include "client-audio-controller.hpp"
 
-Music_controller::Music_controller()
+Audio_controller::Audio_controller()
 {
-    audio = std::make_unique<Audio>(nullptr);
     clean();
 }
 
-Music_controller::~Music_controller()
+Audio_controller::~Audio_controller()
 {
 
 }
 
-void Music_controller::clean()
+void Audio_controller::clean()
 {
     is_setted = false;
     is_playing = false;
@@ -24,8 +23,9 @@ void Music_controller::clean()
     communication.reset(nullptr);
 }
 
-bool Music_controller::play()
+bool Audio_controller::play()
 {
+    bus_message_short("TEST FLAG");
     if (is_location_needed)
         if(!is_location_setted) return false;
 
@@ -40,7 +40,7 @@ bool Music_controller::play()
     return false;
 }
 
-bool Music_controller::pause()
+bool Audio_controller::pause()
 {
     if (is_setted)
     {
@@ -50,7 +50,7 @@ bool Music_controller::pause()
     return false;
 }
 
-bool Music_controller::stop()
+bool Audio_controller::stop()
 {
     if (is_setted)
     {
@@ -65,7 +65,7 @@ bool Music_controller::stop()
     return false;
 }
 
-bool Music_controller::set_file_location(const char * file_location)
+bool Audio_controller::set_file_location(const char * file_location)
 {
     if (is_location_needed)
     {
@@ -76,12 +76,12 @@ bool Music_controller::set_file_location(const char * file_location)
     return false;
 }
 
-bool Music_controller::set_type_of_stream(Type_of_music_stream type = Type_of_music_stream::LOCAL_FILE)
+bool Audio_controller::set_type_of_stream()
 {
-    return set_type_of_stream(type, "", 0);
+    return set_type_of_stream(Type_of_music_stream::LOCAL_FILE, "", 0);
 }
 
-bool Music_controller::set_type_of_stream(Type_of_music_stream type, const gchar* host, gint port)
+bool Audio_controller::set_type_of_stream(Type_of_music_stream type, const gchar* host, gint port)
 {
     bool is_empty = false;
     if (now_setted == Type_of_music_stream::EMPTY)
@@ -100,7 +100,7 @@ bool Music_controller::set_type_of_stream(Type_of_music_stream type, const gchar
             case Type_of_music_stream::UDP_LIVE:
                 if (!is_server_communication_connected) return false;
                 if (communication->send_request(Request::SERVER_SET_UDP) != Replay::SERVER_SETTED_UDP) return false;
-                audio = std::make_unique<Audio>(Audio_udp_live(host, port));
+                audio = std::make_unique<Audio_udp_live>(Audio_udp_live(host, port));
                 audio->set_pipeline();
                 now_setted = Type_of_music_stream::UDP_LIVE;
                 is_server_communication_needed = true;
@@ -108,14 +108,14 @@ bool Music_controller::set_type_of_stream(Type_of_music_stream type, const gchar
             case Type_of_music_stream::UDP_FILE:
                 if (!is_server_communication_connected) return false;
                 if (communication->send_request(Request::SERVER_SET_UDP) != Replay::SERVER_SETTED_UDP) return false;
-                audio = std::make_unique<Audio>(Audio_udp_file(host, port));
+                audio = std::make_unique<Audio_udp_file>(Audio_udp_file(host, port));
                 audio->set_pipeline();
                 now_setted = Type_of_music_stream::UDP_FILE;
                 is_location_needed = true;
                 break;
             case Type_of_music_stream::LOCAL_FILE:
                 if (is_server_communication_connected) return false;
-                audio = std::make_unique<Audio>(Audio_local());
+                audio = std::make_unique<Audio_local>(Audio_local());
                 audio->set_pipeline();
                 now_setted = Type_of_music_stream::UDP_LIVE;
                 is_location_needed = true;
@@ -123,10 +123,12 @@ bool Music_controller::set_type_of_stream(Type_of_music_stream type, const gchar
         }
         if (type != Type_of_music_stream::EMPTY)
             is_setted = true;
+        return true;
     }
+    return false;
 }
 
-bool Music_controller::set_communication_with_headquarters(std::string zmqAddress)
+bool Audio_controller::set_communication_with_headquarters(std::string zmqAddress)
 {
     this->zmqAddress=zmqAddress;
     communication = std::make_unique<Communication_Controller>(Communication_Controller(this->zmqAddress));

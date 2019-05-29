@@ -26,9 +26,9 @@ QString QT_Controller::status()
 bool QT_Controller::set_udp_live_with_default_address()
 {
     if (!isAlreadySetted){
-        const gchar* Host = "192.168.1.7";
+        const gchar* Host = "192.168.43.64";
         gint Port = 5000;
-        std::string zmqAddress = "tcp://192.168.1.7:5555";
+        std::string zmqAddress = "tcp://192.168.43.64:5555";
         music = new Music_main_controller(Host, Port, zmqAddress);
         music->set_type_of_stream(Type_Of_Stream::UDP_LIVE);
         isAlreadySetted = true;

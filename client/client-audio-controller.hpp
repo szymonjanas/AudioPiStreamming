@@ -14,7 +14,7 @@ enum class Type_of_music_stream{
     EMPTY
 };
 
-class Music_controller
+class Audio_controller
 {
     bool is_setted;
     bool is_playing;
@@ -30,18 +30,18 @@ class Music_controller
 
     void clean();
 public:
-    Music_controller();
-    ~Music_controller();
+    Audio_controller();
+    ~Audio_controller();
 
     bool play();
     bool pause();
     bool stop();
     bool set_file_location(const char * file_location);
-    bool set_type_of_stream(Type_of_music_stream type);
+    bool set_type_of_stream();
     bool set_type_of_stream(Type_of_music_stream type, const gchar* host, gint port);
     bool set_communication_with_headquarters(std::string zmqAddress);
 
-    void operator=(Music_controller&) = delete;
+    void operator=(Audio_controller&) = delete;
 };
 
 

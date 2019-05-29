@@ -20,7 +20,9 @@ endif()
 set(ENV{PKG_CONFIG_PATH})
 
 find_package(Qt5 COMPONENTS Core Quick REQUIRED)
-
+if ( NOT (Qt5_FOUND))
+      message(FATAL_ERROR "Please Install Qt Dev: CMake will Exit")
+endif()
 #find_package(Boost 1.67)
 
 # local cmake scripts
@@ -50,15 +52,9 @@ set (CLIENT
         client/client-communication-controller-with-headquarters.cpp
         media/communication-state.cpp
 
-        client/client-qt-controller.cpp
-        qt/qml.qrc
+        #client/client-qt-controller.cpp
+       # qt/qml.qrc
         )
-
-set (SRC_TEST
-     client-tests/test-main.cpp
-     client-tests/test-communication-state.cpp)
-add_executable(${PROJECT_NAME}-tests ${SRC_TEST})
-target_link_libraries(${PROJECT_NAME}-tests ${PROJECT_NAME}-lib)
 
 
 add_executable(${PROJECT_NAME}-client ${CLIENT} )

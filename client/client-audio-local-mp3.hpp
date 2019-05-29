@@ -1,7 +1,7 @@
 #pragma once
 
 #include<gst/gst.h>
-#include "../media/media.hpp"
+#include "media.hpp"
 #include"client-audio.hpp"
 
 class Audio_local : private Media, virtual public Audio

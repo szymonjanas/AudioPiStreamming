@@ -1,7 +1,7 @@
 #pragma once
 
 #include<gst/gst.h>
-#include"../media/media.hpp"
+#include"media.hpp"
 #include"client-audio.hpp"
 
 class Audio_udp_live : private Media, virtual public Audio

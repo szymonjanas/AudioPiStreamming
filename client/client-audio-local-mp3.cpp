@@ -1,7 +1,9 @@
 #include"client-audio-local-mp3.hpp"
 
 Audio_local::Audio_local()
-{}
+{
+
+}
 
 Audio_local::~Audio_local()
 {}
