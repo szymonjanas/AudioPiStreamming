@@ -2,27 +2,28 @@
 
 #include <iostream>
 
-Communication_with_headquarters::Communication_with_headquarters(const std::string& zmqAddress) :
-    zmqAddress(zmqAddress)
+Communication_with_headquarters::Communication_with_headquarters(std::string zmqAddress) : zmqAddress(zmqAddress)
 {
-    bus_message_log_address("Communication", "setted zmq", zmqAddress);
     context = new zmq::context_t (1);
-    socket = new zmq::socket_t (*context, ZMQ_REQ);
-    const char * zmqConnectAddress = zmqAddress.c_str();
-    socket->connect(zmqConnectAddress);
-
+    set_communication();
+    bus_message_log_address("Communication", "setted zmq", zmqAddress);
     TIMEOUT_ms = 1000;
+}
+
+void Communication_with_headquarters::set_communication()
+{
+    socket = new zmq::socket_t (*context, ZMQ_REQ);
+    socket->connect(zmqAddress.c_str());
 }
 
 Communication_with_headquarters::~Communication_with_headquarters()
 {
-    delete context;
     delete socket;
+    delete context;
 }
 
 std::string Communication_with_headquarters::request_for_headquarters(const void * order, size_t order_size)
 {
-
     zmq::message_t request (order_size);
     memcpy (request.data (), order, order_size);
     socket->send (request);
@@ -41,10 +42,12 @@ std::string Communication_with_headquarters::request_for_headquarters(const void
     }
     else if (element[0].revents == 0 and ZMQ_POLLIN)
     {
+        delete socket;
+        set_communication();
         bus_message_error_report("client-communication",
-                                 "communication with headquarters",
-                                 "reques",
+                                 "Communication_with_headquarters",
+                                 "request_for_headquarters",
                                  "SERVER NOT RESPOND");
-        return "SERVER_NOT_RESPOND";
+        return "SERV-DONOT-RESPO";
     }
 }
