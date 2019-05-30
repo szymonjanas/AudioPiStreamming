@@ -4,7 +4,7 @@
 
 Communication_with_headquarters::Communication_with_headquarters(std::string zmqAddress) : zmqAddress(zmqAddress)
 {
-    context = new zmq::context_t (1);
+    context = std::make_unique<zmq::context_t>(1);
     set_communication();
     bus_message_log_address("Communication", "setted zmq", zmqAddress);
     TIMEOUT_ms = 1000;
@@ -12,14 +12,8 @@ Communication_with_headquarters::Communication_with_headquarters(std::string zmq
 
 void Communication_with_headquarters::set_communication()
 {
-    socket = new zmq::socket_t (*context, ZMQ_REQ);
+    socket = std::make_unique<zmq::socket_t> (*context, ZMQ_REQ);
     socket->connect(zmqAddress.c_str());
-}
-
-Communication_with_headquarters::~Communication_with_headquarters()
-{
-    delete socket;
-    delete context;
 }
 
 std::string Communication_with_headquarters::request_for_headquarters(const void * order, size_t order_size)
@@ -42,7 +36,7 @@ std::string Communication_with_headquarters::request_for_headquarters(const void
     }
     else if (element[0].revents == 0 and ZMQ_POLLIN)
     {
-        delete socket;
+        socket.reset();
         set_communication();
         bus_message_error_report("client-communication",
                                  "Communication_with_headquarters",
@@ -50,4 +44,5 @@ std::string Communication_with_headquarters::request_for_headquarters(const void
                                  "SERVER NOT RESPOND");
         return "SERV-DONOT-RESPO";
     }
+    return "LOCA-ERROR-UNKNO";
 }
