@@ -2,44 +2,27 @@
 
 Communication_state_converter::Communication_state_converter()
 {
-    request[Request::SERVER_TEST_CONNECTION] = "SERVER_TEST_CONNECTION";
-    request[Request::SERVER_SET_UDP] = "SERVER_SET_UDP";
-    request[Request::SERVER_STOP_UDP] = "SERVER_STOP_UDP";
+    request_map[Request::SERVER_TEST_CONNECTION] =  serv_message_t("SERV-TESTC-CONN", 15);
+    request_map[Request::SERVER_PLAY_UDP]        =  serv_message_t("SERV-AUDIO-PLAY", 15);
+    request_map[Request::SERVER_SET_UDP]         =  serv_message_t("SERV-AUDIO-SETT", 15);
+    request_map[Request::SERVER_STOP_UDP]        =  serv_message_t("SERV-AUDIO-STOP", 15);
+    request_map[Request::SERVER_WRONG_REQUEST]   =  serv_message_t("SERV-WRONG-REQU", 15);
 
-    replay[Replay::SERVER_CONNECTED] = "SERVER_CONNECTED";
-    replay[Replay::SERVER_NOT_RESPOND] = "SERVER_NOT_RESPOND";
-    replay[Replay::SERVER_SETTED_UDP] = "SERVER_SETTED_UDP";
-    replay[Replay::SERVER_STOPED_UDP] = "SERVER_STOPED_UDP";
+    replay_map["SERV-DONOT-RESPO"] = Replay::SERVER_NOT_RESPOND;
+    replay_map["SERV-TESTC-CONND"] = Replay::SERVER_CONNECTED;
+    replay_map["SERV-AUDIO-PLAYD"] = Replay::SERVER_PLAYED_UDP;
+    replay_map["SERV-AUDIO-SETTD"] = Replay::SERVER_SETTED_UDP;
+    replay_map["SERV-AUDIO-STOPD"] = Replay::SERVER_STOPED_UDP;
+    replay_map["SERV-WRONG-REQUD"] = Replay::SERVER_WRONG_REQUEST;
+    replay_map["LOCA-ERROR-UNKNO"] = Replay::LOCAL_SOMETHING_WRONG;
 }
 
-Message_to_headquarter Communication_state_converter::convert_to_server_replay(Replay replay) const
+serv_message_t Communication_state_converter::convert_request_to_server_msg(Request request) const
 {
-    std::string str_replay = this->replay.at(replay);
-    Message_to_headquarter message;
-    message.first = static_cast<const void *>(str_replay.c_str());
-    message.second = this->replay.at(replay).size();
-    return message;
+    return request_map.at(request);
 }
 
-Message_to_headquarter Communication_state_converter::convert_to_server_request(Request request) const
+Replay Communication_state_converter::convert_server_msg_to_replay(std::string replay) const
 {
-    std::string str_request = this->request.at(request);
-    Message_to_headquarter message;
-    message.first = static_cast<const void *>(str_request.c_str());
-    message.second = this->request.at(request).size();
-    return message;
-}
-
-Request Communication_state_converter::convert_server_requert_to_enum(std::string request) const
-{
-    for (auto i : this->request)
-        if (i.second == request) return i.first;
-    return Request::ERROR;
-}
-
-Replay Communication_state_converter::convert_server_replay_to_enum(std::string replay) const
-{
-    for (auto i : this->replay)
-        if (i.second == replay) return i.first;
-    return Replay::ERROR;
+    return replay_map.at(replay);
 }

@@ -1,32 +1,36 @@
 #pragma once
 #include <string>
 #include <map>
+#include <zmq.hpp>
+#include "messageBus.hpp"
+
 enum class Request{
-    ERROR,
     SERVER_TEST_CONNECTION,
+    SERVER_PLAY_UDP,
     SERVER_SET_UDP,
-    SERVER_STOP_UDP
+    SERVER_STOP_UDP,
+    SERVER_WRONG_REQUEST
 };
 
 enum class Replay{
-    ERROR,
-    SERVER_CONNECTED,
     SERVER_NOT_RESPOND,
+    SERVER_CONNECTED,
+    SERVER_PLAYED_UDP,
     SERVER_SETTED_UDP,
-    SERVER_STOPED_UDP
+    SERVER_STOPED_UDP,
+    SERVER_WRONG_REQUEST,
+    LOCAL_SOMETHING_WRONG
 };
 
-using Message_to_headquarter = std::pair<const void *, size_t>;
+using serv_message_t = std::pair<const void *, size_t>;
 
 class Communication_state_converter
 {
-    std::map<Request, std::string> request;
-    std::map<Replay, std::string> replay;
+    std::map<Request, serv_message_t> request_map;
+    std::map<std::string, Replay> replay_map;
 public:
     Communication_state_converter();
 
-    Message_to_headquarter convert_to_server_request(Request request) const;
-    Message_to_headquarter convert_to_server_replay(Replay replay) const;
-    Request convert_server_requert_to_enum(std::string request) const;
-    Replay convert_server_replay_to_enum(std::string replay) const;
+    serv_message_t convert_request_to_server_msg(Request request) const;
+    Replay convert_server_msg_to_replay(std::string replay) const;
 };
