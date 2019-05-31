@@ -18,5 +18,16 @@ SCENARIO("Testing communication state","[state converter]")
                 REQUIRE(expected_state == replay);
             }
         }
+
+        WHEN("give string request to convert and enum expected")
+        {
+            THEN("convert to request")
+            {
+                std::string req_msg = "SERV-TESTC-CONN";
+                Request expected = Request::SERVER_TEST_CONNECTION;
+                Request req = converter.convert_client_request_msg(req_msg);
+                REQUIRE(req == expected);
+            }
+        }
     }
 }
