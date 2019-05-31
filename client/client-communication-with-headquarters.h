@@ -19,6 +19,6 @@ public:
 
     Communication_with_headquarters(std::string zmqAddress);
 
-    std::string request_for_headquarters(const void * order, size_t order_size);
+    std::string request_for_headquarters(std::string request);
 
 };

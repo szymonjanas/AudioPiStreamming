@@ -16,11 +16,11 @@ void Communication_with_headquarters::set_communication()
     socket->connect(zmqAddress.c_str());
 }
 
-std::string Communication_with_headquarters::request_for_headquarters(const void * order, size_t order_size)
+std::string Communication_with_headquarters::request_for_headquarters(std::string request)
 {
-    zmq::message_t request (order_size);
-    memcpy (request.data (), order, order_size);
-    socket->send (request);
+    zmq::message_t request_msg (request.size());
+    memcpy (request_msg.data (), static_cast<const void *>(request.c_str()), request.size());
+    socket->send (request_msg);
     bus_message_short("REQUEST SEND");
 
     zmq::pollitem_t element[] = {{static_cast<void *>(*socket), 0, ZMQ_POLLIN, 0}};
