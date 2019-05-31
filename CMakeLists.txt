@@ -10,7 +10,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_compile_options(-c
         -Wall
-        -std=gnu++14
         -Wextra
         -Winit-self
         -Woverloaded-virtual
@@ -67,13 +66,10 @@ set (CLIENT
        # qt/qml.qrc
         )
 
-
 add_executable(${PROJECT_NAME}-client ${CLIENT} )
 target_link_libraries(${PROJECT_NAME}-client ${GST_LIBRARIES})
 target_link_libraries(${PROJECT_NAME}-client zmq)
 target_link_libraries(${PROJECT_NAME}-client Qt5::Core Qt5::Quick)
-
-
 
 set (HEADQUARTERS
         headquarters/headquarters-main.cpp
@@ -88,7 +84,6 @@ add_executable(${PROJECT_NAME}-headquarters ${HEADQUARTERS})
 target_link_libraries(${PROJECT_NAME}-headquarters ${GST_LIBRARIES})
 target_link_libraries(${PROJECT_NAME}-headquarters zmq)
 
-
 set (TESTS_SRC_LISTS
      client-tests/test-main.cpp
      client-tests/test-communication-state.cpp
@@ -97,6 +92,3 @@ set (TESTS_SRC_LISTS
      )
 add_executable(${PROJECT_NAME}-client-tests ${TESTS_SRC_LISTS})
 target_link_libraries(${PROJECT_NAME}-client-tests zmq)
-
-
-
