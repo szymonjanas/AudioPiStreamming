@@ -93,6 +93,8 @@ int main (  int   argc,
                     }
                     break;
             }
+            if (!audio.check_connection())
+                bus_communication_log("CONNECTION CHECKING", "HEADQUARTERS NOT RESPOND");
         }
     }
 

@@ -46,6 +46,7 @@ public:
     bool set_type_of_stream();
     bool set_type_of_stream(Type_of_music_stream type, const gchar* host, gint port);
     bool set_communication_with_headquarters(std::string zmqAddress);
+    bool check_connection();
 
     void operator=(Audio_controller&) = delete;
 

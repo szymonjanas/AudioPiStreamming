@@ -24,6 +24,7 @@ bool Audio_udp_live::set_pipeline()
         g_printerr ("One element could not be created. Exiting.\n");
         return false;
     }
+
     bus = gst_pipeline_get_bus (GST_PIPELINE (pipeline));
     bus_watch_id = gst_bus_add_watch (bus, bus_call, loop);
     gst_object_unref (bus);

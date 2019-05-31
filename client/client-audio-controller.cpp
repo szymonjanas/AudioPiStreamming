@@ -33,6 +33,7 @@ bool Audio_controller::play()
 
     if (is_setted)
     {
+        communication->send_request(Request::SERVER_PLAY_UDP);
         audio->set_status(MediaStatus::PLAY);
         return true;
     }
@@ -172,4 +173,18 @@ bool Audio_controller::set_communication_with_headquarters(std::string zmqAddres
     }
     is_server_communication_connected = false;
     return false;
+}
+
+bool Audio_controller::check_connection()
+{
+    if (is_server_communication_needed)
+        if (is_server_communication_connected){
+            if (communication->check_connection())
+                return true;
+            else
+            {
+                is_server_communication_connected = false;
+                return false;
+            }
+        }
 }
