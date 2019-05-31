@@ -5,8 +5,19 @@ project(audio)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+add_compile_options(-c
+        -Wall
+        -std=gnu++14
+        -Wextra
+        -Winit-self
+        -Woverloaded-virtual
+        -Wuninitialized
+        -pedantic
+        -g
+)
 
 set(PKG_CONFIG_USE_CMAKE_PREFIX_PATH ON)
 find_package(PkgConfig REQUIRED)
