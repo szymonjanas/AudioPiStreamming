@@ -1,8 +1,9 @@
 #include<gst/gst.h>
-//#include <QGuiApplication>
-//#include <QQmlApplicationEngine>
-//#include <QQmlContext>
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
 #include "client-audio-controller.hpp"
+#include "client-qt-controller.hpp"
 #include <iostream>
 #include "messageBus.hpp"
 
@@ -27,86 +28,81 @@ int main (  int   argc,
 //    const gchar* Host = "192.168.1.7";
 //    gint Port = 5000;
 //    std::string zmqAddress = "tcp://192.168.1.7:5555";
-    const gchar* Host = "192.168.43.53";
-    gint Port = 5000;
-    std::string zmqAddress = "tcp://192.168.43.53:5555";
+//    const gchar* Host = "192.168.43.53";
+//    gint Port = 5000;
+//    std::string zmqAddress = "tcp://192.168.43.53:5555";
 
-    bool help_not_used = true;
-    for (int i = 1; i < argc; ++i)
-    {
-        if (!strcmp (argv[i], "-h") or !strcmp(argv[i], "--help"))
-        {
-            show_help();
-            help_not_used = false;
-        }
-        if (!strcmp (argv[i], "-b") or !strcmp(argv[i], "--bus"))
-        {
-            bus_on();
-            bus_message_short("BUS TURN ON!");
-        }
-        if (!strcmp (argv[i], "-t") or !strcmp(argv[i], "--test"))
-        {
-            Host = "127.0.0.1";
-            Port = 5000;
-            zmqAddress = "tcp://127.0.0.1:5555";
-            bus_message_short("LOCAL TEST ENABLED");
-        }
-    }
+//    bool help_not_used = true;
+//    for (int i = 1; i < argc; ++i)
+//    {
+//        if (!strcmp (argv[i], "-h") or !strcmp(argv[i], "--help"))
+//        {
+//            show_help();
+//            help_not_used = false;
+//        }
+//        if (!strcmp (argv[i], "-b") or !strcmp(argv[i], "--bus"))
+//        {
+//            bus_on();
+//            bus_message_short("BUS TURN ON!");
+//        }
+//        if (!strcmp (argv[i], "-t") or !strcmp(argv[i], "--test"))
+//        {
+//            Host = "127.0.0.1";
+//            Port = 5000;
+//            zmqAddress = "tcp://127.0.0.1:5555";
+//            bus_message_short("LOCAL TEST ENABLED");
+//        }
+//    }
 
-//    QGuiApplication app(argc, argv);
+    QGuiApplication app(argc, argv);
 
-//    QQmlApplicationEngine engine;
-//    QQmlContext* context = engine.rootContext();
-//    QT_Controller ctrl;
-//    context->setContextProperty("qtControl", &ctrl);
-
-
-    if (help_not_used)
-    {
-        Audio_controller audio;
-
-        bool first_time = true;
-        while (true)
-        {
-            char status = getchar();
-            switch (status)
-            {
-                case 'p':
-                    if (first_time){
-                        first_time = false;
-                        if (audio.set_communication_with_headquarters(zmqAddress))
-                            audio.set_type_of_stream(Type_of_music_stream::UDP_FILE, Host, Port);
-
-//                            audio.set_type_of_stream();
-                            audio.set_file_location("../PigeonJohn-TheBomb.mp3");
-                    }
-                    audio.play();
-                    break;
-                case 'P':
-                    if (!first_time)
-                        audio.pause();
-                    break;
-                case 's':
-                    if (!first_time){
-                        audio.stop();
-                        first_time = true;
-                    }
-                    break;
-            }
-            if (!audio.check_connection())
-                bus_communication_log("CONNECTION CHECKING", "HEADQUARTERS NOT RESPOND");
-        }
-    }
-
-//    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-
-//    return app.exec();
+    QQmlApplicationEngine engine;
+    QQmlContext* context = engine.rootContext();
+    QT_Controller ctrl;
+    context->setContextProperty("qtControl", &ctrl);
 
 
+//    if (help_not_used)
+//    {
+//        Audio_controller audio;
 
+//        bool first_time = true;
+//        while (true)
+//        {
+//            char status = getchar();
+//            switch (status)
+//            {
+//                case 'p':
+//                    if (first_time){
+//                        first_time = false;
+//                        if (audio.set_communication_with_headquarters(zmqAddress))
+//                        {
+//                            audio.set_type_of_stream(Type_of_music_stream::UDP_FILE);
+//                            audio.set_network_udp(Host, Port);
+//                            audio.set_file_location("../PigeonJohn-TheBomb.mp3");
+//                        }
+//                    }
+//                    audio.play();
+//                    break;
+//                case 'P':
+//                    if (!first_time)
+//                        audio.pause();
+//                    break;
+//                case 's':
+//                    if (!first_time){
+//                        audio.stop();
+//                        first_time = true;
+//                    }
+//                    break;
+//            }
+//            if (!audio.check_connection())
+//                bus_communication_log("CONNECTION CHECKING", "HEADQUARTERS NOT RESPOND");
+//        }
+//    }
+
+    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+    return app.exec();
 
 //    local.set_location("../PigeonJohn-TheBomb.mp3");
-
 //    client.set_location("../PigeonJohn-TheBomb.mp3");
-
 }

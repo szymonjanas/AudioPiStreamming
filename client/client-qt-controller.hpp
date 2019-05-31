@@ -2,23 +2,24 @@
 
 #include <QObject>
 #include <QString>
-#include "client-main-audio-controller.hpp"
+#include "client-audio-controller.hpp"
 
-
-class QT_Controller : public QObject
+class QT_Controller : public QObject, private Audio_controller
 {
+    const gchar* Host;
+    gint Port;
+    std::string zmqAddress;
+
     Q_OBJECT
     Q_PROPERTY(QString status READ status WRITE setStatus NOTIFY statusChanged)
 
-    Music_main_controller* music;
     QString message;
     void setStatus(const QString & message);
-    bool isAlreadySetted;
 
-    Type_Of_Stream type_of_stream;
+    Type_of_music_stream type_of_stream;
 
-    bool set_udp_live_with_default_address();
-    bool set_local_stream_from_file();
+    bool set_udp_address();
+    void set_file_location();
 public:
     QT_Controller();
     ~QT_Controller();
@@ -26,8 +27,10 @@ public:
     QString status();
 public slots:
     void set_udp_live();
-    void set_local_stream();
+    void set_local_file();
+    void set_udp_file();
     void set_empty();
+    bool set();
 
     void play();
     void pause();

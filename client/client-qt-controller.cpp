@@ -2,14 +2,12 @@
 
 QT_Controller::QT_Controller()
 {
-    isAlreadySetted = false;
-    type_of_stream = Type_Of_Stream::EMPTY;
-    music = nullptr;
+    type_of_stream = Type_of_music_stream::EMPTY;
 }
 
 QT_Controller::~QT_Controller()
 {
-    delete music;
+
 }
 
 void QT_Controller::setStatus(const QString & message)
@@ -23,106 +21,103 @@ QString QT_Controller::status()
     return message;
 }
 
-bool QT_Controller::set_udp_live_with_default_address()
+bool QT_Controller::set_udp_address()
 {
-    if (!isAlreadySetted){
-        const gchar* Host = "192.168.43.64";
-        gint Port = 5000;
-        std::string zmqAddress = "tcp://192.168.43.64:5555";
-        music = new Music_main_controller(Host, Port, zmqAddress);
-        music->set_type_of_stream(Type_Of_Stream::UDP_LIVE);
-        isAlreadySetted = true;
+    if (!get_set_status())
+    {
+        Host = "192.168.1.7";
+        Port = 5000;
+        zmqAddress = "tcp://192.168.1.7:5555";
+        set_network_udp(Host, Port);
+        set_communication_with_headquarters(zmqAddress);
         return true;
     }
-    else {
-        QString err = "Stop first!";
-        setStatus(err);
-        return false;
-    }
+    return false;
 }
 
-bool QT_Controller::set_local_stream_from_file()
+void QT_Controller::set_file_location()
 {
-    if (!isAlreadySetted){
-        QString msg = "Playing local from file ...";
-        setStatus(msg);
-        const gchar* Host = "192.168.1.7";
-        gint Port = 5000;
-        std::string zmqAddress = "tcp://192.168.1.7:5555";
-        music = new Music_main_controller(Host, Port, zmqAddress);
-        music->set_file_location("../PigeonJohn-TheBomb.mp3");
-        music->set_type_of_stream(Type_Of_Stream::LOCAL_FILE);
-        isAlreadySetted = true;
-        return true;
-    }
-    else {
-        QString err = "Stop first!";
-        setStatus(err);
-        return false;
-    }
+    Audio_controller::set_file_location("../PigeonJohn-TheBomb.mp3");
 }
 
 void QT_Controller::play()
 {
-    switch (type_of_stream) {
-        case Type_Of_Stream::UDP_LIVE:
-            set_udp_live_with_default_address();
-            break;
-        case Type_Of_Stream::LOCAL_FILE:
-            set_local_stream_from_file();
-            break;
-        case Type_Of_Stream::UDP_FILE:
-            break;
-        case Type_Of_Stream::EMPTY:
-
-            isAlreadySetted = false;
-            break;
-    }
-    if (isAlreadySetted){
-    QString msg = "Streamming music live ...";
-    setStatus(msg);
-    music->set_status_of_stream(MediaStatus::PLAY);
+    if (!get_set_status())
+            set();
+    if (!get_play_status())
+    {
+        if (Audio_controller::play())
+            setStatus("Playing...");
+        else
+            setStatus("Can not play!");
     }
 }
 
 void QT_Controller::pause()
 {
-    if (isAlreadySetted){
-    QString msg = "Pause streamming music live ...";
-    setStatus(msg);
-    music->set_status_of_stream(MediaStatus::PAUSE);
-    }
+    Audio_controller::pause();
+    setStatus("Paused");
 }
 
 void QT_Controller::stop()
 {
-    if (isAlreadySetted){
-    QString msg = "Stoped stream music live.";
-    setStatus(msg);
-    music->set_status_of_stream(MediaStatus::STOP);
-    isAlreadySetted = false;
+    Audio_controller::stop();
+    setStatus("Stopped.");
+}
+
+bool QT_Controller::set()
+{
+    switch (type_of_stream)
+    {
+        case Type_of_music_stream::UDP_FILE:
+            set_udp_address();
+            set_type_of_stream(type_of_stream);
+            set_file_location();
+            return true;
+        case Type_of_music_stream::UDP_LIVE:
+            set_udp_address();
+            set_type_of_stream(type_of_stream);
+            return true;
+        case Type_of_music_stream::LOCAL_FILE:
+            set_type_of_stream(type_of_stream);
+            set_file_location();
+            return true;
+        case Type_of_music_stream::EMPTY:
+            return false;
     }
+    return false;
 }
 
 void QT_Controller::set_udp_live()
 {
-    type_of_stream = Type_Of_Stream::UDP_LIVE;
+    if (!get_set_status())
+    {
+        type_of_stream = Type_of_music_stream::UDP_LIVE;
+        setStatus("Remote live play...");
+    }
 }
 
-void QT_Controller::set_local_stream()
+void QT_Controller::set_local_file()
 {
-    type_of_stream = Type_Of_Stream::LOCAL_FILE;
+    if (!get_set_status())
+    {
+        type_of_stream = Type_of_music_stream::LOCAL_FILE;
+        setStatus("Local file play...");
+    }
+}
+
+void QT_Controller::set_udp_file()
+{
+    if (!get_set_status())
+    {
+        type_of_stream = Type_of_music_stream::UDP_FILE;
+        setStatus("Remote file play...");
+    }
 }
 
 void QT_Controller::set_empty()
 {
+    setStatus("");
     stop();
-    if (music != nullptr)
-    {
-        delete music;
-        music = nullptr;
-    }
-    if (type_of_stream != Type_Of_Stream::EMPTY)
-        type_of_stream = Type_Of_Stream::EMPTY;
-
+    type_of_stream = Type_of_music_stream::EMPTY;
 }
