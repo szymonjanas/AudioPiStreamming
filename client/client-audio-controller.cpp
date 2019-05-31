@@ -170,10 +170,6 @@ bool Audio_controller::set_communication_with_headquarters(std::string zmqAddres
         is_server_communication_connected = true;
         return true;
     }
-    bus_message_error_report("client-audio-controller",
-                             "Audio_controller",
-                             "set_communication_with_headquarters",
-                             "SERVER NOT RESPOND");
     is_server_communication_connected = false;
     return false;
 }
