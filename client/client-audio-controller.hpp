@@ -2,7 +2,6 @@
 #include "client-audio-local-mp3.hpp"
 #include "client-audio-udp-file.hpp"
 #include "client-audio-udp-live.hpp"
-
 #include "client-communication-controller-with-headquarters.hpp"
 
 #include <memory>
@@ -26,9 +25,16 @@ class Audio_controller
 
     std::unique_ptr<Audio> audio;
     std::unique_ptr<Communication_Controller> communication;
-    std::string zmqAddress;
+    const gchar* host;
+    gint port;
 
     void clean();
+
+    bool send_request_to_server_set_udp();
+    bool set_udp_live();
+    bool set_udp_file();
+    bool set_local_file();
+
 public:
     Audio_controller();
     ~Audio_controller();
@@ -42,7 +48,5 @@ public:
     bool set_communication_with_headquarters(std::string zmqAddress);
 
     void operator=(Audio_controller&) = delete;
+
 };
-
-
-

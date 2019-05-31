@@ -25,7 +25,6 @@ void Audio_controller::clean()
 
 bool Audio_controller::play()
 {
-    bus_message_short("TEST FLAG");
     if (is_location_needed)
         if(!is_location_setted) return false;
 
@@ -56,9 +55,8 @@ bool Audio_controller::stop()
     {
         audio->set_status(MediaStatus::STOP);
         if (is_server_communication_connected)
-            for (unsigned short i = 0; i < 3; ++i)
-                if (communication->send_request(Request::SERVER_STOP_UDP) == Replay::SERVER_STOPED_UDP)
-                    i = 4;
+            if (communication->send_request(Request::SERVER_STOP_UDP) != Replay::SERVER_STOPED_UDP)
+                return false;
         clean();
         return true;
     }
@@ -76,6 +74,52 @@ bool Audio_controller::set_file_location(const char * file_location)
     return false;
 }
 
+bool Audio_controller::send_request_to_server_set_udp()
+{
+    if (!is_server_communication_connected) return false;
+    if (communication->send_request(Request::SERVER_SET_UDP) != Replay::SERVER_SETTED_UDP)
+        return false;
+    return true;
+}
+
+bool Audio_controller::set_udp_live()
+{
+    if (!send_request_to_server_set_udp())
+        return false;
+
+    audio = std::make_unique<Audio_udp_live>(host, port);
+    audio->set_pipeline();
+
+    now_setted = Type_of_music_stream::UDP_LIVE;
+    is_server_communication_needed = true;
+
+    return true;
+}
+
+bool Audio_controller::set_udp_file()
+{
+    if (!send_request_to_server_set_udp())
+        return false;
+
+    audio = std::make_unique<Audio_udp_file>(host, port);
+    audio->set_pipeline();
+
+    now_setted = Type_of_music_stream::UDP_FILE;
+    is_server_communication_needed = true;
+    is_location_needed = true;
+
+    return true;
+}
+
+bool Audio_controller::set_local_file()
+{
+    audio = std::make_unique<Audio_local>();
+    audio->set_pipeline();
+    now_setted = Type_of_music_stream::UDP_LIVE;
+    is_location_needed = true;
+    return true;
+}
+
 bool Audio_controller::set_type_of_stream()
 {
     return set_type_of_stream(Type_of_music_stream::LOCAL_FILE, "", 0);
@@ -83,10 +127,14 @@ bool Audio_controller::set_type_of_stream()
 
 bool Audio_controller::set_type_of_stream(Type_of_music_stream type, const gchar* host, gint port)
 {
+    this->host = host;
+    this->port = port;
+
     bool is_empty = false;
     if (now_setted == Type_of_music_stream::EMPTY)
         is_empty = true;
-    else {
+    else
+    {
         stop();
         is_empty = true;
     }
@@ -98,27 +146,13 @@ bool Audio_controller::set_type_of_stream(Type_of_music_stream type, const gchar
             case Type_of_music_stream::EMPTY:
                 break;
             case Type_of_music_stream::UDP_LIVE:
-                if (!is_server_communication_connected) return false;
-                if (communication->send_request(Request::SERVER_SET_UDP) != Replay::SERVER_SETTED_UDP) return false;
-                audio = std::make_unique<Audio_udp_live>(Audio_udp_live(host, port));
-                audio->set_pipeline();
-                now_setted = Type_of_music_stream::UDP_LIVE;
-                is_server_communication_needed = true;
+                if (!set_udp_live()) return false;
                 break;
             case Type_of_music_stream::UDP_FILE:
-                if (!is_server_communication_connected) return false;
-                if (communication->send_request(Request::SERVER_SET_UDP) != Replay::SERVER_SETTED_UDP) return false;
-                audio = std::make_unique<Audio_udp_file>(Audio_udp_file(host, port));
-                audio->set_pipeline();
-                now_setted = Type_of_music_stream::UDP_FILE;
-                is_location_needed = true;
+                if (!set_udp_file()) return false;
                 break;
             case Type_of_music_stream::LOCAL_FILE:
-                if (is_server_communication_connected) return false;
-                audio = std::make_unique<Audio_local>(Audio_local());
-                audio->set_pipeline();
-                now_setted = Type_of_music_stream::UDP_LIVE;
-                is_location_needed = true;
+                if (!set_local_file()) return false;
                 break;
         }
         if (type != Type_of_music_stream::EMPTY)
@@ -130,17 +164,15 @@ bool Audio_controller::set_type_of_stream(Type_of_music_stream type, const gchar
 
 bool Audio_controller::set_communication_with_headquarters(std::string zmqAddress)
 {
-    this->zmqAddress=zmqAddress;
-    communication = std::make_unique<Communication_Controller>(Communication_Controller(this->zmqAddress));
-    for (unsigned short i = 0; i < 3; ++i)
-        if (communication->check_connection())
-        {
-            is_server_communication_connected = true;
-            return true;
-        }
-    bus_message_error_report("client-controller-audio",
-                             "Music-controller",
-                             "set-communication",
+    communication = std::make_unique<Communication_Controller>(zmqAddress);
+    if (communication->check_connection())
+    {
+        is_server_communication_connected = true;
+        return true;
+    }
+    bus_message_error_report("client-audio-controller",
+                             "Audio_controller",
+                             "set_communication_with_headquarters",
                              "SERVER NOT RESPOND");
     is_server_communication_connected = false;
     return false;
