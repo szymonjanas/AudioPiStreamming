@@ -4,6 +4,8 @@ sudo: required
 os: linux
 
 before_install:
+- sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+- sudo apt-get update -qq
 - curl -L https://people.freedesktop.org/~slomo/gstreamer-1.14.3.tar.gz | tar xz
 - sed -i "s;prefix=/root/gstreamer;prefix=$PWD/gstreamer;g" $PWD/gstreamer/lib/x86_64-linux-gnu/pkgconfig/*.pc
 - export PKG_CONFIG_PATH=$PWD/gstreamer/lib/x86_64-linux-gnu/pkgconfig
@@ -13,6 +15,8 @@ before_install:
 - export LD_LIBRARY_PATH=$PWD/gstreamer/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
 
 install:
+        - sudo apt-get install -qq g++-6
+        - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
         - sudo apt-get install libgstreamer1.0-0 gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-tools gstreamer1.0-x libgstreamer-plugins-base1.0-dev 
         - sudo apt-get install libboost-all-dev
         - sudo apt-get install libzmq3-dev
