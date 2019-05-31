@@ -11,7 +11,7 @@ class Audio_udp_live : private Media, virtual public Audio
 public:
     Audio_udp_live(const gchar* host, gint port);
     ~Audio_udp_live() override;
-    void set_pipeline() override;
+    bool set_pipeline() override;
     void set_status(MediaStatus status) override;
     void set_location(const char*) override;
 };

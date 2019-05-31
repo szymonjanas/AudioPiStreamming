@@ -12,7 +12,7 @@ void Audio_udp_file::set_status(MediaStatus status)
     Media::set_status(status);
 }
 
-void Audio_udp_file::set_pipeline()
+bool Audio_udp_file::set_pipeline()
 {
     pipeline = gst_pipeline_new ("audio-streamer");
     source   = gst_element_factory_make ("filesrc",       "file-source");
@@ -22,7 +22,7 @@ void Audio_udp_file::set_pipeline()
 
     if (!pipeline || !source ||!parse || !pay || !sink) {
         g_printerr ("One element could not be created. Exiting.\n");
-        exit(1);
+        return false;
     }
     bus = gst_pipeline_get_bus (GST_PIPELINE (pipeline));
     bus_watch_id = gst_bus_add_watch (bus, bus_call, loop);
@@ -33,6 +33,7 @@ void Audio_udp_file::set_pipeline()
     gst_element_link_many (source, parse, pay, sink, NULL);
 
     g_object_set(G_OBJECT(sink), "host", host, "port", port, NULL);
+    return true;
 }
 
 void Audio_udp_file::set_location(const char *location)

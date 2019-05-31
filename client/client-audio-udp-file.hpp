@@ -13,5 +13,5 @@ public:
     ~Audio_udp_file() override;
     void set_location(const char* location) override;
     void set_status(MediaStatus status) override;
-    void set_pipeline() override;
+    bool set_pipeline() override;
 };

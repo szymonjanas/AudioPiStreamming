@@ -8,7 +8,7 @@ Audio_local::Audio_local()
 Audio_local::~Audio_local()
 {}
 
-void Audio_local::set_pipeline()
+bool Audio_local::set_pipeline()
 {
     pipeline = gst_pipeline_new ("audio-player");
     source   = gst_element_factory_make ("filesrc",       "file-source");
@@ -19,7 +19,7 @@ void Audio_local::set_pipeline()
 
     if (!pipeline || !source ||!parse || !decoder || !conv || !sink) {
       g_printerr ("One element could not be created. Exiting.\n");
-      exit(1);
+      return false;
     }
 
     bus = gst_pipeline_get_bus (GST_PIPELINE (pipeline));
@@ -29,7 +29,7 @@ void Audio_local::set_pipeline()
     gst_bin_add_many (GST_BIN (pipeline),
                       source, parse, decoder, conv, sink, NULL);
     gst_element_link_many (source, parse, decoder, conv, sink, NULL);
-
+    return true;
 }
 
 void Audio_local::set_location(const char *location)

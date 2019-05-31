@@ -11,7 +11,7 @@ Audio_udp_live::~Audio_udp_live()
 
 }
 
-void Audio_udp_live::set_pipeline()
+bool Audio_udp_live::set_pipeline()
 {
     pipeline = gst_pipeline_new ("audio-streamer");
     source   = gst_element_factory_make ("pulsesrc",        "live-source");
@@ -22,7 +22,7 @@ void Audio_udp_live::set_pipeline()
 
     if (!pipeline || !source ||!conv || !encoder || !pay || !sink) {
         g_printerr ("One element could not be created. Exiting.\n");
-        exit(1);
+        return false;
     }
     bus = gst_pipeline_get_bus (GST_PIPELINE (pipeline));
     bus_watch_id = gst_bus_add_watch (bus, bus_call, loop);
@@ -34,6 +34,7 @@ void Audio_udp_live::set_pipeline()
 
     g_object_set(G_OBJECT(source), "device", "alsa_output.pci-0000_00_14.2.analog-stereo.monitor", NULL);
     g_object_set(G_OBJECT(sink), "host", host, "port", port, NULL);
+    return true;
 }
 
 void Audio_udp_live::set_status(MediaStatus status)
