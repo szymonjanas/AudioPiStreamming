@@ -28,7 +28,12 @@ serv_message_t Communication_state_converter::convert_request_to_server_msg(Requ
 
 Replay Communication_state_converter::convert_server_msg_to_replay(std::string replay) const
 {
-    return replay_map.at(replay);
+    for (auto i : replay_map)
+    {
+        if (i.first == replay)
+            return i.second;
+    }
+    return Replay::SERVER_WRONG_REQUEST;
 }
 
 Request Communication_state_converter::convert_client_request_msg(std::string request) const
@@ -38,6 +43,7 @@ Request Communication_state_converter::convert_client_request_msg(std::string re
         if (i.second == request)
             return i.first;
     }
+    return Request::SERVER_WRONG_REQUEST;
 }
 
 serv_message_t Communication_state_converter::convert_replay_to_client(Replay replay) const
