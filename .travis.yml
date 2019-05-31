@@ -36,4 +36,5 @@ script:
          - cd build
          - cmake ..
          - make
+         - ./audio-client-tests
 

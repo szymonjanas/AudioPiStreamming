@@ -78,7 +78,8 @@ set (HEADQUARTERS
         media/media.cpp
         media/messageBus.cpp
         headquarters/headquarters-communication.cpp
-        media/communication-state.cpp)
+        media/communication-state.cpp
+        headquarters/headquarters-communication-controller.cpp)
 include_directories(media)
 add_executable(${PROJECT_NAME}-headquarters ${HEADQUARTERS})
 target_link_libraries(${PROJECT_NAME}-headquarters ${GST_LIBRARIES})

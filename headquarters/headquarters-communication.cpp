@@ -1,18 +1,22 @@
 #include "headquarters-communication.h"
 
-Communication::Communication(std::string& zmqAddress) :
+Communication::Communication(std::string zmqAddress) :
     zmqAddress(zmqAddress)
 {
-    bus_message_log_address("Communication", "setted", zmqAddress);
-    context = new zmq::context_t (1);
-    socket = new zmq::socket_t (*context, ZMQ_REP);
-    socket->bind(zmqAddress.c_str());
+    set_communication();
 }
 
 Communication::~Communication()
 {
-    delete socket;
-    delete context;
+
+}
+
+void Communication::set_communication()
+{
+    bus_message_log_address("Communication", "setted", zmqAddress);
+    context = std::make_unique<zmq::context_t>(1);
+    socket = std::make_unique<zmq::socket_t>(*context, ZMQ_REP);
+    socket->bind(zmqAddress.c_str());
 }
 
 std::string Communication::waiting_for_request_from_client()
