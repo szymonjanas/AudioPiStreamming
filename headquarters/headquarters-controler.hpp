@@ -1,7 +1,8 @@
 #pragma once
 
-#include "headquarters-communication.h"
+#include "headquarters-communication-controller.hpp"
 #include "headquarters-audio-processing.hpp"
+#include "communication-state.hpp"
 
 #include <zmq.hpp>
 #include <string>
@@ -9,14 +10,25 @@
 
 class Manager
 {
+    bool is_setted;
+    bool is_playing;
+
     gchar * host;
     gint port;
-    std::string& zmqAddress;
+    std::string zmqAddress;
 
-    Play_audio_live_from_client* play;
-    Communication* communication;
+    Play_audio_live_from_client* audio;
+    Communication_controler* communication;
+
+    void set_connection();
+    bool set();
+    bool play();
+    bool stop();
+
+
 public:
-    Manager (gchar * host, gint port, std::string& zmqAddress);
+    Manager (gchar * host, gint port, std::string zmqAddress);
     ~Manager();
-    void start();
+    void manage();
+
 };

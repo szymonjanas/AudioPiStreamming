@@ -42,6 +42,6 @@ int main (  int   argc,
     {
         bus_message_short("PROGRAM RUNNING...");
         Manager manager(Host, Port, zmqAddress);
-        manager.start();
+        manager.manage();
     }
 }

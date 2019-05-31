@@ -1,47 +1,91 @@
-#include "headquarters-controler.hpp"
+﻿#include "headquarters-controler.hpp"
 
-Manager::Manager(gchar * host, gint port, std::string& zmqAddress)
+Manager::Manager(gchar * host, gint port, std::string zmqAddress)
     :zmqAddress(zmqAddress)
 {
     this->host = host;
     this->port = port;
+
+    set_connection();
+
+    is_setted = false;
+    is_playing = false;
 }
 
 Manager::~Manager()
 {
-    delete play;
+    delete audio;
     delete communication;
 }
 
-void Manager::start()
+void Manager::set_connection()
 {
-    communication = new Communication (zmqAddress);
-    play = new Play_audio_live_from_client;
+    communication = new Communication_controler (zmqAddress);
+}
+
+bool Manager::set()
+{
+    audio = new Play_audio_live_from_client;
+    if (audio->set_live_player_udp_mp3(host, port))
+    {
+        is_setted = true;
+        return true;
+    }
+    return false;
+}
+
+bool Manager::play()
+{
+    if (is_setted){
+        audio->set_status(MediaStatus::PLAY);
+        is_playing = true;
+        return true;
+    }
+    return false;
+}
+
+bool Manager::stop()
+{
+    if (is_setted and is_playing)
+    {
+        audio->set_status(MediaStatus::STOP);
+        delete audio;
+        is_setted = false;
+        is_playing = false;
+        return true;
+    }
+    return false;
+}
+
+void Manager::manage()
+{
     while (true) {
 
-        std::string request = communication->waiting_for_request_from_client();
+        Request request = communication->get_request_from_client();
 
-
-        if (request == "SETMP3")
+        switch (request)
         {
-            play->set_player_udp_mp3(host, port);
-            communication->send_confirm_or_refuse("MP3SETTED", 9);
-        }
-        if (request == "PLAY")
-        {
-            play->set_status(MediaStatus::PLAY);
-            communication->send_confirm_or_refuse("PLAYING", 7);
-        }
-        if (request == "PAUSE")
-        {
-            play->set_status(MediaStatus::PAUSE);
-            communication->send_confirm_or_refuse("PAUSED", 6);
-        }
-        if (request == "STOP")
-        {
-            play->set_status(MediaStatus::STOP);
-            communication->send_confirm_or_refuse("STOPED", 6);
+            case Request::SERVER_SET_UDP:
+                if (set())
+                    communication->send_replay(Replay::SERVER_SETTED_UDP);
+                else communication->send_replay(Replay::SERVER_REQUEST_DENIDED);
+                break;
+            case Request::SERVER_STOP_UDP:
+                if (stop())
+                    communication->send_replay(Replay::SERVER_STOPED_UDP);
+                else communication->send_replay(Replay::SERVER_REQUEST_DENIDED);
+                break;
+            case Request::SERVER_WRONG_REQUEST:
+                communication->send_replay(Replay::SERVER_WRONG_REQUEST);
+                break;
+            case Request::SERVER_TEST_CONNECTION:
+                communication->send_replay(Replay::SERVER_CONNECTED);
+                break;
+            case Request::SERVER_PLAY_UDP:
+                if (play())
+                    communication->send_replay(Replay::SERVER_PLAYED_UDP);
+                else communication->send_replay(Replay::SERVER_REQUEST_DENIDED);
+                break;
         }
     }
 }
-
