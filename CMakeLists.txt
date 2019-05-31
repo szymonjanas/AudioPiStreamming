@@ -77,3 +77,15 @@ add_executable(${PROJECT_NAME}-headquarters ${HEADQUARTERS})
 target_link_libraries(${PROJECT_NAME}-headquarters ${GST_LIBRARIES})
 target_link_libraries(${PROJECT_NAME}-headquarters zmq)
 
+
+set (TESTS_SRC_LISTS
+     client-tests/test-main.cpp
+     client-tests/test-communication-state.cpp
+
+     media/communication-state.cpp
+     )
+add_executable(${PROJECT_NAME}-client-tests ${TESTS_SRC_LISTS})
+target_link_libraries(${PROJECT_NAME}-client-tests zmq)
+
+
+
