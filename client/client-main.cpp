@@ -72,12 +72,13 @@ int main (  int   argc,
             switch (status)
             {
                 case 'p':
-                    bus_message_short("TEST SWITCH");
                     if (first_time){
-                        bus_message_short("TEST");
                         first_time = false;
-                        audio.set_type_of_stream(Type_of_music_stream::UDP_LIVE, Host, Port);
-                        audio.set_communication_with_headquarters(zmqAddress);
+                        if (audio.set_communication_with_headquarters(zmqAddress))
+                            audio.set_type_of_stream(Type_of_music_stream::UDP_FILE, Host, Port);
+
+//                            audio.set_type_of_stream();
+                            audio.set_file_location("../PigeonJohn-TheBomb.mp3");
                     }
                     audio.play();
                     break;
