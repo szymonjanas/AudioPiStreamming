@@ -14,18 +14,17 @@ Manager::Manager(gchar * host, gint port, std::string zmqAddress)
 
 Manager::~Manager()
 {
-    delete audio;
-    delete communication;
+
 }
 
 void Manager::set_connection()
 {
-    communication = new Communication_controler (zmqAddress);
+    communication = std::make_unique<Communication_controler>(zmqAddress);
 }
 
 bool Manager::set()
 {
-    audio = new Play_audio_live_from_client;
+    audio = std::make_unique<Play_audio_live_from_client>();
     if (audio->set_live_player_udp_mp3(host, port))
     {
         is_setted = true;
@@ -49,7 +48,7 @@ bool Manager::stop()
     if (is_setted and is_playing)
     {
         audio->set_status(MediaStatus::STOP);
-        delete audio;
+        audio.reset();
         is_setted = false;
         is_playing = false;
         return true;

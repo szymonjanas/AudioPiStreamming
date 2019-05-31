@@ -7,6 +7,7 @@
 #include <zmq.hpp>
 #include <string>
 #include "messageBus.hpp"
+#include <memory>
 
 class Manager
 {
@@ -17,8 +18,8 @@ class Manager
     gint port;
     std::string zmqAddress;
 
-    Play_audio_live_from_client* audio;
-    Communication_controler* communication;
+    std::unique_ptr<Play_audio_live_from_client> audio;
+    std::unique_ptr<Communication_controler> communication;
 
     void set_connection();
     bool set();
