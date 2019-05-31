@@ -17,5 +17,5 @@ public:
     Communication(std::string zmqAddress);
     ~Communication();
     std::string waiting_for_request_from_client();
-    void send_confirm_or_refuse(const void *message, size_t message_size);
+    void send_confirm_or_refuse(std::string message);
 };

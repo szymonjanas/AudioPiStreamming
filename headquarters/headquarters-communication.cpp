@@ -32,9 +32,10 @@ std::string Communication::waiting_for_request_from_client()
     return data;
 }
 
-void Communication::send_confirm_or_refuse(const void *message, size_t message_size)
+void Communication::send_confirm_or_refuse(std::string message)
 {
-    zmq::message_t request (message_size);
-    memcpy (request.data (), message, message_size);
+    bus_communication_log("REPLAY SEND", message);
+    zmq::message_t request (message.size());
+    memcpy (request.data (), static_cast<const void *>(message.c_str()), message.size());
     socket->send (request);
 }
