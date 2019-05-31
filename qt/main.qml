@@ -18,33 +18,43 @@ ApplicationWindow {
     Column {
         x: 200
         y: 100
-
         Switch {
-            id: udpswitch
-            text: qsTr("Play Udp")
-            onCheckedChanged: if (localswitch.checked && checked)
+            id: udpliveswitch
+            text: qsTr("Remote live")
+            onCheckedChanged: if (checked)
                               {
                                   localswitch.checked = false
+                                  udpfileswitch.checked = false
                                   qtControl.set_udp_live()
                               }
-                              else if (checked)
-                                  qtControl.set_udp_live()
+                              else if (!checked)
+                                  qtControl.set_empty()
+        }
+        Switch {
+            id: udpfileswitch
+            text: qsTr("Remote file")
+            onCheckedChanged: if (checked)
+                              {
+                                  localswitch.checked = false
+                                  udpliveswitch.checked = false
+                                  qtControl.set_udp_file()
+                              }
                               else if (!checked)
                                   qtControl.set_empty()
         }
         Switch {
             id: localswitch
-            text: qsTr("Play local")
-            onCheckedChanged: if (udpswitch.checked && checked)
+            text: qsTr("Local file")
+            onCheckedChanged: if (checked)
                               {
-                                  udpswitch.checked = false
-                                  qtControl.set_local_stream()
+                                  udpliveswitch.checked = false
+                                  udpfileswitch.checked = false
+                                  qtControl.set_local_file()
                               }
-                              else if (checked)
-                                  qtControl.set_local_stream()
                               else if (!checked)
                                   qtControl.set_empty()
         }
+
     }
 
     Text {
@@ -80,4 +90,13 @@ ApplicationWindow {
         onClicked: qtControl.pause()
     }
 
+//    TextField {
+//        id: ip
+//        anchors.verticalCenterOffset: -141
+//        anchors.horizontalCenterOffset: -65
+//        placeholderText: qsTr("Address 192.168.1.7")
+//        anchors.centerIn: parent
+
+//       // onTextChanged:
+//    }
 }

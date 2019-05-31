@@ -62,8 +62,8 @@ set (CLIENT
         client/client-communication-controller-with-headquarters.cpp
         media/communication-state.cpp
 
-        #client/client-qt-controller.cpp
-       # qt/qml.qrc
+        client/client-qt-controller.cpp
+        qt/qml.qrc
         )
 
 add_executable(${PROJECT_NAME}-client ${CLIENT} )
