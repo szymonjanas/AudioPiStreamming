@@ -18,6 +18,7 @@ class Communication_with_headquarters
 public:
 
     Communication_with_headquarters(std::string zmqAddress);
+    virtual ~Communication_with_headquarters();
 
     std::string request_for_headquarters(std::string request);
 
