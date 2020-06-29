@@ -12,18 +12,12 @@ Build: [![Build Status](https://travis-ci.com/szymonjanas/AudioPiStreamming.svg?
 - wireless music playing: 
   - streaming live from system 
   - streaming live from file
-- control devices:
-  - switching hdmi wires
-  - switching power strip
   
 **Technology:**
-- <img src="https://github.com/szymonjanas/AudioPiStreamming/blob/master/githubgraphics/gst.png" /> 
-  .. GStreamer >1.0 for multimedia playing and udp streaming  
-- <img src="https://github.com/szymonjanas/AudioPiStreamming/blob/master/githubgraphics/qt.png" width="25" height="25" /> 
-   .............. Qt5 for GUI
-- <img src="https://github.com/szymonjanas/AudioPiStreamming/blob/master/githubgraphics/zmq.jpg" width="40" height="20" /> 
-   .......... ZeroMQ for tcp communication between devices
+- GStreamer >1.0 for multimedia playing and udp streaming  
+- Qt5 for GUI
+- ZeroMQ for tcp communication between devices
 
 **Devices used in tests:**
-- Headquarter: Raspberry Pi 3 Model B with Raspbian <img src="https://github.com/szymonjanas/AudioPiStreamming/blob/master/githubgraphics/RPi.png" width="20" height="25" />
-- Client: Acer V5 AMD with Ubuntu 19
+- Headquarter: Raspberry Pi 3B+
+- Client: Ubuntu 19
